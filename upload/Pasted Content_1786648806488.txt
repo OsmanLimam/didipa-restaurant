@@ -1,0 +1,1909 @@
+# MASTER BUILD PROMPT
+
+## Premium Production-Quality Restaurant Ordering Platform
+
+You are an elite **staff-level full-stack engineer, product designer, UX/UI designer, database architect, QA engineer, security engineer, and DevOps engineer** working as one team.
+
+Your task is to **BUILD, RUN, TEST, DEBUG, POLISH, and PREPARE FOR DEPLOYMENT** a complete restaurant ordering web application.
+
+This is a real software project.
+
+It is NOT a design mockup.
+It is NOT a static landing page.
+It is NOT a collection of fake screens.
+It is NOT a prototype where buttons merely look functional.
+
+I need a genuinely working full-stack application that can be:
+
+* run locally
+* tested end-to-end
+* pushed to GitHub
+* deployed to production
+* opened from a public URL
+* demonstrated in a screen recording
+* shown to potential clients/employers
+* extended into a real restaurant product later
+
+The final product must look and feel like a professionally designed commercial application built by a highly experienced engineering and product team.
+
+Do not mention AI anywhere in the product UI.
+
+Do not use AI-generated filler copy.
+
+Do not create fake functionality.
+
+Do not claim something works unless it actually works.
+
+If you encounter an error, investigate and fix it rather than working around it with fake UI.
+
+---
+
+# 1. PRODUCT VISION
+
+Build a premium Ghana-focused restaurant ordering platform for a fictional restaurant called:
+
+# MAMA'S KITCHEN
+
+The platform has two primary experiences:
+
+### Customer
+
+A beautiful restaurant storefront where customers can:
+
+* discover meals
+* browse categories
+* search food
+* view meal details
+* customize orders
+* add items to cart
+* checkout
+* choose delivery or pickup
+* submit orders
+* track orders
+* contact the restaurant through WhatsApp
+
+### Restaurant Staff/Admin
+
+A secure dashboard where restaurant staff can:
+
+* view incoming orders
+* process orders
+* update order status
+* manage menu items
+* manage categories
+* view customers
+* view sales
+* monitor restaurant performance
+* configure restaurant settings
+
+The experience should feel like a real restaurant technology product.
+
+---
+
+# 2. DESIGN BENCHMARK
+
+The visual quality must be comparable to a professionally funded modern food-ordering product.
+
+Use the design quality of products such as:
+
+* Uber Eats
+* DoorDash
+* Toast
+* Stripe
+* Airbnb
+* modern premium restaurant websites
+
+as inspiration for quality, NOT for copying their design.
+
+The product should have:
+
+* excellent typography
+* strong hierarchy
+* professional spacing
+* high-quality imagery
+* sophisticated cards
+* restrained shadows
+* subtle borders
+* excellent buttons
+* polished forms
+* beautiful responsive navigation
+* carefully designed empty states
+* polished loading states
+* thoughtful error states
+* subtle micro-interactions
+* smooth transitions
+* excellent mobile UX
+
+Do NOT create:
+
+* excessive gradients
+* excessive glassmorphism
+* random neon colors
+* excessive rounded cards
+* giant unnecessary headings
+* meaningless animations
+* excessive shadows
+* cluttered dashboards
+* generic AI-template aesthetics
+* visually inconsistent components
+
+Every design decision must have a reason.
+
+---
+
+# 3. BRAND
+
+Restaurant:
+
+MAMA'S KITCHEN
+
+Positioning:
+
+A modern Ghanaian restaurant serving delicious local and contemporary meals with convenient ordering and delivery.
+
+Brand personality:
+
+* warm
+* premium
+* trustworthy
+* modern
+* appetizing
+* local
+* professional
+
+Use Ghanaian food and cultural context naturally without turning the interface into a cliché.
+
+Use Ghanaian Cedi:
+
+GH₵
+
+Do not use USD in customer-facing content.
+
+---
+
+# 4. TECHNOLOGY
+
+Use a modern, stable, maintainable production stack.
+
+Preferred:
+
+* Next.js
+* App Router
+* TypeScript
+* Tailwind CSS
+* shadcn/ui
+* Prisma
+* PostgreSQL
+* Zod
+* React Hook Form where appropriate
+* Lucide icons
+* Motion / Framer Motion where appropriate
+* Recharts for analytics
+
+Use stable compatible versions.
+
+Do not install libraries simply because they are popular.
+
+Every dependency must have a legitimate purpose.
+
+Avoid unnecessary dependency bloat.
+
+---
+
+# 5. ARCHITECTURE
+
+Use a clean, maintainable architecture.
+
+Separate:
+
+* UI components
+* server logic
+* database access
+* validation
+* authentication
+* business logic
+* utility functions
+* types
+* configuration
+
+Avoid giant components.
+
+Avoid duplicated logic.
+
+Avoid putting database logic directly into presentation components.
+
+Use reusable components.
+
+Create clear service boundaries where appropriate.
+
+Keep the architecture understandable to another developer joining the project.
+
+---
+
+# 6. ROUTING
+
+Create at minimum:
+
+CUSTOMER:
+
+/
+/menu
+/menu/[slug]
+/cart
+/checkout
+/order/[id]
+/order/[id]/confirmation
+
+ADMIN:
+
+/admin/login
+/admin
+/admin/orders
+/admin/orders/[id]
+/admin/menu
+/admin/categories
+/admin/customers
+/admin/analytics
+/admin/settings
+
+Create additional routes only when they provide real value.
+
+No dead routes.
+
+No dead navigation links.
+
+Every visible navigation element must lead somewhere meaningful.
+
+---
+
+# 7. CUSTOMER HOMEPAGE
+
+Build a high-end restaurant homepage.
+
+Include:
+
+## Header
+
+* restaurant logo
+* menu navigation
+* order/cart button
+* responsive mobile navigation
+
+## Hero
+
+Strong restaurant photography.
+
+Clear headline.
+
+Supporting text.
+
+Primary CTA:
+
+"Order Now"
+
+Secondary CTA:
+
+"Explore Menu"
+
+Show useful restaurant information such as:
+
+* delivery
+* pickup
+* opening status
+* estimated preparation time
+
+## Featured meals
+
+Show selected popular meals.
+
+## Categories
+
+Visually appealing category navigation.
+
+## Popular dishes
+
+Show high-performing dishes.
+
+## Promotional section
+
+Example:
+
+"Free delivery on orders over GH₵100"
+
+This should be configurable.
+
+## Restaurant story
+
+Short credible restaurant description.
+
+## Testimonials
+
+Use seeded demo testimonials.
+
+## Opening hours
+
+Clearly display operating hours.
+
+## Location
+
+Display restaurant location.
+
+## Footer
+
+Include:
+
+* restaurant information
+* contact
+* hours
+* social links
+* ordering links
+* privacy
+* terms
+
+Do not create fake external social links.
+
+If no real social accounts exist, do not fabricate them.
+
+---
+
+# 8. MENU
+
+Create a premium menu experience.
+
+Features:
+
+* category tabs
+* search
+* sorting
+* popular filter
+* availability filter
+* responsive food grid
+
+Food card must show:
+
+* image
+* name
+* short description
+* price
+* category
+* popular badge where applicable
+* availability
+* add button
+
+Add subtle hover interaction.
+
+On mobile, controls must remain easy to use.
+
+---
+
+# 9. FOOD DETAIL EXPERIENCE
+
+Clicking a food item opens a polished detail experience.
+
+Include:
+
+* large image
+* meal name
+* description
+* price
+* preparation estimate
+* ingredients where appropriate
+* optional extras
+* quantity
+* special instructions
+* add-to-cart button
+
+Examples of extras:
+
+* extra chicken
+* extra egg
+* extra plantain
+* extra sauce
+* bottled water
+
+Extras must affect the actual order total.
+
+Do not merely display them visually.
+
+---
+
+# 10. CART
+
+Create a fully functional cart.
+
+Include:
+
+* item image
+* item name
+* selected options
+* quantity
+* unit price
+* item total
+* remove
+* subtotal
+* delivery fee
+* discounts where applicable
+* total
+
+Implement:
+
+* add
+* remove
+* increase
+* decrease
+* clear
+* update
+
+Handle empty cart elegantly.
+
+Persist cart appropriately.
+
+Do not allow invalid quantities.
+
+---
+
+# 11. CHECKOUT
+
+Create a professional checkout flow.
+
+Fields:
+
+Customer name
+Phone number
+Email (optional)
+Delivery or pickup
+Delivery address
+Delivery instructions
+Special order notes
+
+For delivery:
+
+* address is required
+* delivery fee applies
+
+For pickup:
+
+* unnecessary delivery fields disappear
+
+Use proper client-side and server-side validation.
+
+Use clear validation messages.
+
+Do not erase correctly entered information unnecessarily when validation fails.
+
+---
+
+# 12. ORDER CALCULATION
+
+IMPORTANT:
+
+Never trust totals submitted by the browser.
+
+The server must retrieve actual menu prices from the database and calculate:
+
+subtotal
+extras
+discounts
+delivery fee
+total
+
+on the server.
+
+The client must never be able to manipulate the final order price.
+
+---
+
+# 13. ORDER CREATION
+
+When a customer submits an order:
+
+1. Validate input.
+2. Validate menu items.
+3. Validate availability.
+4. Retrieve current prices.
+5. Calculate totals server-side.
+6. Create customer if necessary.
+7. Create order.
+8. Create order items.
+9. Store selected options.
+10. Store delivery information.
+11. Generate order number.
+12. Return confirmation.
+13. Display confirmation page.
+
+Use a database transaction where appropriate so an order cannot be partially created.
+
+---
+
+# 14. ORDER NUMBERS
+
+Create professional order numbers.
+
+Example:
+
+MK-1042
+MK-1043
+MK-1044
+
+They should be human-readable.
+
+Do not expose raw database IDs as the only customer-facing identifier.
+
+---
+
+# 15. ORDER STATUS
+
+Use actual database-backed statuses.
+
+Suggested:
+
+PENDING
+CONFIRMED
+PREPARING
+READY
+OUT_FOR_DELIVERY
+DELIVERED
+CANCELLED
+
+Create a sensible transition system.
+
+Do not allow nonsensical transitions.
+
+For example, a DELIVERED order should not casually move back to PENDING.
+
+---
+
+# 16. CUSTOMER ORDER TRACKING
+
+Create a polished tracking experience.
+
+Show:
+
+Order number
+Restaurant
+Items
+Total
+Delivery/pickup
+Estimated time
+
+Visual timeline:
+
+Order received
+↓
+Confirmed
+↓
+Preparing
+↓
+Ready
+↓
+Out for delivery
+↓
+Delivered
+
+The current status must come from the database.
+
+If admin changes the order status, the customer tracking page must reflect the updated status when refreshed/reloaded.
+
+Do not fake real-time functionality unless actual real-time infrastructure is implemented.
+
+---
+
+# 17. WHATSAPP
+
+Implement WhatsApp ordering support.
+
+Store restaurant WhatsApp number in an environment variable.
+
+After checkout provide:
+
+"Continue on WhatsApp"
+
+Generate a properly encoded message containing:
+
+Restaurant
+Order number
+Customer
+Items
+Quantities
+Options
+Total
+Delivery/pickup
+Address
+Notes
+
+The WhatsApp link must actually work.
+
+Do not hardcode the number inside components.
+
+---
+
+# 18. ADMIN AUTHENTICATION
+
+Create secure admin authentication.
+
+Admin routes must not be publicly accessible.
+
+Use proper authentication and authorization.
+
+Roles:
+
+ADMIN
+STAFF
+
+If staff functionality is not fully implemented, keep the schema extensible without pretending it exists.
+
+Never expose passwords.
+
+Never store plaintext passwords.
+
+Never put secrets in client-side code.
+
+---
+
+# 19. ADMIN DASHBOARD
+
+Create a premium dashboard.
+
+Show:
+
+Today's revenue
+Today's orders
+Pending orders
+Completed orders
+Average order value
+Popular item
+
+Include:
+
+* revenue chart
+* order volume chart
+* recent orders
+* popular menu items
+
+The numbers must be derived from actual database data.
+
+Seed data should make the dashboard look realistic on first launch.
+
+---
+
+# 20. ADMIN ORDERS
+
+Create a professional order management interface.
+
+Table/list columns:
+
+Order
+Customer
+Items
+Type
+Total
+Status
+Time
+
+Filters:
+
+All
+Pending
+Confirmed
+Preparing
+Ready
+Out for delivery
+Delivered
+Cancelled
+
+Include search.
+
+Include sorting where useful.
+
+Click an order to view complete details.
+
+---
+
+# 21. ADMIN ORDER DETAIL
+
+Show:
+
+Customer
+Phone
+Address
+Items
+Options
+Subtotal
+Delivery fee
+Discount
+Total
+Order notes
+Order time
+Current status
+Order history
+
+Provide clear status controls.
+
+When status changes:
+
+* validate transition
+* update database
+* show success feedback
+* update UI
+
+---
+
+# 22. ORDER HISTORY
+
+Maintain order status history.
+
+Record:
+
+status
+timestamp
+changed by
+
+This allows the restaurant to see how the order progressed.
+
+Do not overwrite historical status information.
+
+---
+
+# 23. MENU MANAGEMENT
+
+Admin can:
+
+* create item
+* edit item
+* deactivate item
+* activate item
+* update price
+* update image
+* update description
+* assign category
+* mark popular
+* configure extras
+* set preparation time
+
+Destructive actions require confirmation.
+
+---
+
+# 24. CATEGORY MANAGEMENT
+
+Admin can:
+
+* create
+* edit
+* deactivate
+* reorder
+
+Categories should have:
+
+name
+slug
+description
+display order
+active status
+
+---
+
+# 25. CUSTOMER MANAGEMENT
+
+Create a customer management view.
+
+Show:
+
+Customer name
+Phone
+Orders
+Total spent
+Last order
+Customer since
+
+Allow admin to open customer order history.
+
+Do not expose unnecessary sensitive information.
+
+---
+
+# 26. ANALYTICS
+
+Create useful restaurant analytics.
+
+Metrics:
+
+* revenue
+* orders
+* average order value
+* most popular meals
+* category performance
+* order status distribution
+* delivery vs pickup
+* daily/weekly/monthly trends
+
+Charts should be readable and useful.
+
+Avoid decorative charts with no business value.
+
+---
+
+# 27. RESTAURANT SETTINGS
+
+Admin settings should support:
+
+Restaurant name
+Description
+Phone
+WhatsApp number
+Address
+Opening hours
+Delivery fee
+Minimum order
+Preparation time
+Restaurant status
+
+Potential status:
+
+OPEN
+CLOSED
+BUSY
+
+The customer storefront should respect restaurant availability.
+
+---
+
+# 28. OPENING HOURS
+
+Implement proper opening-hour data.
+
+Customer should see:
+
+OPEN NOW
+or
+CLOSED — OPENS AT 10:00 AM
+
+Do not hardcode this in the UI.
+
+Use configured restaurant hours.
+
+Handle timezone correctly.
+
+Use Africa/Accra where appropriate.
+
+---
+
+# 29. DEMO DATA
+
+Create a comprehensive seed system.
+
+Seed:
+
+* restaurant
+* categories
+* 20–30 menu items
+* extras
+* admin user
+* sample customers
+* 15–30 sample orders
+* different order statuses
+* realistic historical dates
+* testimonials
+
+The application should look populated immediately after setup.
+
+---
+
+# 30. DEMO MODE
+
+Create a clearly separated development/demo environment.
+
+Demo data may be used for portfolio demonstration.
+
+Do NOT confuse demo data with production data.
+
+Production configuration must be able to start with a clean database.
+
+Do not create permanent backdoors.
+
+Do not create hidden admin access.
+
+---
+
+# 31. PAYMENTS
+
+Create a payment abstraction.
+
+Initial supported methods:
+
+* Cash on delivery
+* Pay on pickup
+* Payment pending
+
+Structure the code so a real Ghanaian payment provider can later be integrated without rewriting checkout.
+
+Potential future providers may include:
+
+* Paystack
+* Flutterwave
+* Hubtel
+
+Do not pretend payment occurred if no real payment provider is connected.
+
+If implementing a simulated payment for the demo, label it clearly as demo/test payment.
+
+---
+
+# 32. DATABASE
+
+Use PostgreSQL + Prisma.
+
+At minimum:
+
+User
+Restaurant
+RestaurantHours
+Category
+MenuItem
+MenuItemExtra
+Customer
+Order
+OrderItem
+OrderItemExtra
+OrderStatusHistory
+Testimonial
+
+Use proper relationships.
+
+Use enums where appropriate.
+
+Add timestamps.
+
+Add indexes for frequently queried fields.
+
+Use cascading behavior carefully.
+
+Do not destroy historical order records when a menu item is deleted.
+
+Prefer deactivation/soft deletion where business history requires it.
+
+---
+
+# 33. DATA INTEGRITY
+
+Implement:
+
+* foreign keys
+* unique constraints
+* validation
+* database transactions
+* server-side calculations
+* status validation
+* availability checks
+
+Prevent:
+
+* negative quantities
+* invalid prices
+* invalid order totals
+* invalid statuses
+* ordering unavailable items
+* unauthorized admin mutations
+
+---
+
+# 34. SECURITY
+
+Implement sensible production security.
+
+Protect:
+
+* admin routes
+* API routes
+* database credentials
+* authentication secrets
+* environment variables
+
+Validate all externally supplied data.
+
+Do not trust:
+
+* client prices
+* client totals
+* client roles
+* client status transitions
+
+Avoid exposing internal database errors to users.
+
+Create user-friendly error messages.
+
+---
+
+# 35. ERROR HANDLING
+
+Every major flow needs:
+
+Loading state
+Success state
+Empty state
+Error state
+
+Examples:
+
+Menu loading
+Menu unavailable
+No search results
+Empty cart
+Checkout validation
+Order creation failure
+Order not found
+Admin authentication failure
+Database error
+
+Use useful recovery actions.
+
+Do not show raw technical errors.
+
+---
+
+# 36. LOADING UX
+
+Use skeleton loaders where useful.
+
+Avoid blank screens.
+
+Loading states should resemble the final layout.
+
+Do not use giant generic spinners everywhere.
+
+---
+
+# 37. TOASTS
+
+Use tasteful notifications for:
+
+Added to cart
+Removed from cart
+Order created
+Order status changed
+Menu item saved
+Menu item deleted
+Settings saved
+Copied order number
+
+Notifications should not become annoying.
+
+---
+
+# 38. ANIMATION SYSTEM
+
+Use Motion/Framer Motion only where appropriate.
+
+Implement subtle:
+
+* page transitions
+* modal transitions
+* drawer transitions
+* cart count animation
+* add-to-cart feedback
+* card hover
+* button feedback
+* order status transitions
+* skeleton transitions
+
+Respect:
+
+prefers-reduced-motion
+
+Do not animate every element.
+
+Animation should improve perceived quality, hierarchy, or feedback.
+
+---
+
+# 39. ICON SYSTEM
+
+Use one coherent icon library.
+
+Prefer Lucide icons.
+
+Do not mix random icon styles.
+
+Every icon button must have accessible labeling.
+
+Do not use emoji as the primary interface icon system.
+
+---
+
+# 40. TYPOGRAPHY
+
+Use a professional font pairing if justified.
+
+Typography should have:
+
+* clear heading hierarchy
+* readable body text
+* appropriate line height
+* good mobile sizing
+* consistent weights
+
+Do not use too many font families.
+
+---
+
+# 41. RESPONSIVE DESIGN
+
+Test at:
+
+360px
+375px
+390px
+414px
+768px
+1024px
+1280px
+1440px
+1920px
+
+Check:
+
+* navigation
+* menu
+* cart
+* checkout
+* admin dashboard
+* tables
+* charts
+* modals
+* forms
+
+There must be:
+
+NO horizontal overflow
+NO clipped content
+NO inaccessible buttons
+NO broken layouts
+
+---
+
+# 42. MOBILE UX
+
+Prioritize mobile.
+
+Important actions must be easy to reach.
+
+Consider:
+
+* sticky cart summary
+* mobile bottom navigation where appropriate
+* touch-friendly controls
+* large tap targets
+* simplified checkout
+* readable pricing
+
+Do not simply shrink desktop UI.
+
+Design mobile intentionally.
+
+---
+
+# 43. ACCESSIBILITY
+
+Implement:
+
+* semantic HTML
+* labels
+* keyboard navigation
+* focus states
+* accessible dialogs
+* accessible dropdowns
+* sufficient contrast
+* alt text
+* reduced motion
+* appropriate ARIA
+
+Do not sacrifice accessibility for visual design.
+
+---
+
+# 44. SEO
+
+Implement:
+
+* metadata
+* page titles
+* descriptions
+* Open Graph metadata
+* favicon
+* robots.txt
+* sitemap where appropriate
+* canonical URLs where appropriate
+
+Use meaningful metadata per page.
+
+---
+
+# 45. SOCIAL SHARING
+
+Create Open Graph metadata so when the restaurant URL is shared on WhatsApp or social media it produces a professional preview.
+
+Use:
+
+Restaurant name
+Description
+Professional image
+
+Do not leave generic Next.js metadata.
+
+---
+
+# 46. PERFORMANCE
+
+Optimize:
+
+* images
+* database queries
+* server/client boundaries
+* bundle size
+* rendering
+* loading
+* API calls
+
+Use Next.js image optimization.
+
+Avoid unnecessary client components.
+
+Avoid unnecessary JavaScript.
+
+---
+
+# 47. IMAGE STRATEGY
+
+Use high-quality, realistic food photography.
+
+Prefer properly licensed/usable image sources or bundled assets.
+
+Do not use broken URLs.
+
+Do not use random unrelated images.
+
+Every image must correspond to the meal.
+
+Use appropriate image aspect ratios.
+
+Use lazy loading where appropriate.
+
+Use meaningful alt text.
+
+---
+
+# 48. EMPTY STATES
+
+Create beautiful empty states for:
+
+Empty cart
+No menu results
+No orders
+No customers
+No analytics
+No search results
+
+Each should explain what happened and provide an appropriate action.
+
+---
+
+# 49. ERROR PAGES
+
+Create polished:
+
+404
+500/error
+unauthorized
+order-not-found
+
+experiences.
+
+Do not expose stack traces.
+
+---
+
+# 50. ADMIN TABLE UX
+
+Tables must support:
+
+* responsive behavior
+* useful columns
+* status badges
+* search
+* filtering
+* sorting where useful
+* pagination if required
+
+On mobile, transform complex tables into useful cards rather than creating impossible horizontal-scroll experiences.
+
+---
+
+# 51. FORM UX
+
+Forms must have:
+
+* labels
+* placeholders only where useful
+* validation
+* errors
+* loading state
+* success feedback
+* disabled state during submission
+
+Do not allow double submission.
+
+---
+
+# 52. SECURITY OF ORDER ACCESS
+
+Do not allow arbitrary users to view every order by simply changing an ID.
+
+Implement an appropriate order-access mechanism.
+
+For a demo/MVP, use a secure customer order token or authenticated customer session where appropriate.
+
+Admin can access all orders according to role.
+
+---
+
+# 53. CONFIGURATION
+
+Use environment variables for:
+
+DATABASE_URL
+AUTH_SECRET
+NEXT_PUBLIC_APP_URL
+WHATSAPP_NUMBER
+PAYMENT_PROVIDER_KEYS
+other secrets/configuration as necessary
+
+Create:
+
+.env.example
+
+Never commit:
+
+.env
+production secrets
+private keys
+
+---
+
+# 54. README
+
+Create a professional README containing:
+
+Project overview
+Features
+Screenshots section placeholder
+Technology
+Architecture overview
+Local setup
+Environment variables
+Database setup
+Migration commands
+Seed commands
+Admin credentials
+Development
+Testing
+Production build
+Deployment
+Troubleshooting
+Future integrations
+
+Make the README useful to another developer.
+
+---
+
+# 55. GIT
+
+Create a clean Git-ready repository.
+
+Include:
+
+.gitignore
+README
+.env.example
+
+Do not commit:
+
+node_modules
+.env
+build artifacts
+database secrets
+temporary files
+
+Use sensible commit structure if commits are being made.
+
+---
+
+# 56. DEPLOYMENT
+
+The application must be deployable.
+
+Primary target:
+
+Vercel
+
+Database:
+
+Production PostgreSQL compatible with Prisma.
+
+Ensure:
+
+* production build works
+* environment variables documented
+* Prisma deployment process documented
+* migrations handled correctly
+* seed process documented
+* image domains configured
+* production URL configurable
+* no localhost assumptions remain
+
+Do not hardcode localhost anywhere that affects production behavior.
+
+---
+
+# 57. DEPLOYMENT DOCUMENTATION
+
+README must explain:
+
+1. Create PostgreSQL database.
+2. Configure environment variables.
+3. Run Prisma migrations.
+4. Seed database if desired.
+5. Connect repository to Vercel.
+6. Configure environment variables.
+7. Deploy.
+8. Run production verification.
+
+---
+
+# 58. QUALITY ASSURANCE
+
+After implementation, perform a complete QA pass.
+
+Test:
+
+CUSTOMER
+
+Homepage
+Menu
+Search
+Categories
+Food details
+Extras
+Cart
+Checkout
+Order creation
+Confirmation
+Tracking
+WhatsApp
+
+ADMIN
+
+Login
+Dashboard
+Orders
+Order detail
+Status updates
+Menu management
+Categories
+Customers
+Analytics
+Settings
+
+---
+
+# 59. END-TO-END TEST
+
+Actually perform this scenario:
+
+1. Open homepage.
+2. Navigate to menu.
+3. Search for Jollof.
+4. Open Jollof.
+5. Add extra chicken.
+6. Set quantity to 2.
+7. Add to cart.
+8. Add a drink.
+9. Open cart.
+10. Verify subtotal.
+11. Select delivery.
+12. Enter delivery address.
+13. Submit order.
+14. Verify order is stored.
+15. Verify order number.
+16. Open confirmation.
+17. Open tracking.
+18. Log into admin.
+19. Verify order appears.
+20. Open order.
+21. Confirm order.
+22. Change to Preparing.
+23. Change to Ready.
+24. Return to tracking.
+25. Verify status.
+26. Test WhatsApp link.
+27. Test admin menu editing.
+28. Test responsive layouts.
+29. Run lint.
+30. Run type checking.
+31. Run production build.
+
+Fix every failure discovered.
+
+---
+
+# 60. AUTOMATED TESTING
+
+Where practical, implement automated tests for important business logic.
+
+Prioritize:
+
+* price calculation
+* cart calculations
+* delivery fee
+* order validation
+* status transitions
+* server-side order totals
+
+Do not spend excessive time creating meaningless tests.
+
+Test important logic.
+
+---
+
+# 61. BUILD VERIFICATION
+
+Before declaring the project complete, run the appropriate commands.
+
+At minimum:
+
+npm install
+
+npm run lint
+
+npm run build
+
+If configured:
+
+npm test
+
+Also run type checking.
+
+Fix all errors.
+
+Do not leave known build failures.
+
+---
+
+# 62. BROWSER QA
+
+Use the browser/runtime environment available to you to inspect the actual application.
+
+Do not rely only on source code inspection.
+
+Open the pages.
+
+Interact with them.
+
+Check:
+
+* visual alignment
+* console errors
+* broken images
+* navigation
+* forms
+* responsive behavior
+* loading states
+* database persistence
+
+---
+
+# 63. VISUAL QA
+
+Perform a dedicated final visual review.
+
+Pretend a client has paid a premium agency to build this product.
+
+Ask:
+
+Does it look expensive?
+
+Does it feel intentional?
+
+Does it look trustworthy?
+
+Does the restaurant feel real?
+
+Is the typography excellent?
+
+Are the images strong?
+
+Are the cards consistent?
+
+Are the buttons polished?
+
+Does the dashboard look credible?
+
+Does mobile feel designed rather than compressed?
+
+Are animations subtle?
+
+Are there awkward empty areas?
+
+Are there inconsistent margins?
+
+Are there unnecessary borders?
+
+Are there generic-looking components?
+
+Fix everything you find.
+
+---
+
+# 64. ANTI-AI-BLUFF RULE
+
+This rule is mandatory.
+
+NEVER claim:
+
+"Implemented"
+
+unless it actually exists.
+
+NEVER claim:
+
+"Working"
+
+unless it has been tested.
+
+NEVER claim:
+
+"Production ready"
+
+if the production build fails.
+
+NEVER hide errors.
+
+NEVER replace missing functionality with a fake animation.
+
+NEVER create fake statistics without labeling them as seed/demo data.
+
+NEVER fabricate payment success.
+
+NEVER fabricate database persistence.
+
+NEVER create buttons that do nothing.
+
+NEVER create links that lead nowhere.
+
+NEVER use placeholder text in the final customer-facing experience.
+
+NEVER leave:
+
+TODO
+FIXME
+Coming soon
+Lorem ipsum
+
+in important user-facing areas.
+
+If a feature cannot be completed because an external credential is unavailable:
+
+1. Build the correct integration architecture.
+2. Make the rest of the application functional.
+3. Clearly document the missing credential.
+4. Never pretend the integration is active.
+
+---
+
+# 65. NO OVERENGINEERING
+
+Do not turn a restaurant MVP into an unnecessarily complex enterprise system.
+
+Prefer:
+
+simple
+maintainable
+secure
+scalable enough
+easy to deploy
+
+over:
+
+massive architecture
+unnecessary microservices
+unnecessary abstractions
+dozens of dependencies
+
+The product should be sophisticated in EXPERIENCE and QUALITY, not unnecessarily complicated internally.
+
+---
+
+# 66. DEMO-FIRST QUALITY
+
+This application will be recorded as a product demonstration.
+
+Therefore the initial seeded environment must be visually impressive.
+
+When the application opens:
+
+* menu should be populated
+* restaurant should look alive
+* dashboard should contain meaningful data
+* sample orders should exist
+* charts should display useful information
+* status badges should look polished
+
+The demo should not require hours of setup.
+
+---
+
+# 67. RECORDING SCENARIO
+
+Make the product suitable for this demonstration:
+
+SCENE 1
+
+Open live restaurant website.
+
+Show homepage.
+
+SCENE 2
+
+Open menu.
+
+Search:
+
+Jollof
+
+SCENE 3
+
+Open:
+
+Jollof Rice & Chicken
+
+Add:
+
+Extra chicken
+
+Quantity:
+
+2
+
+SCENE 4
+
+Add:
+
+Sobolo
+
+Open cart.
+
+SCENE 5
+
+Checkout.
+
+Choose:
+
+Delivery
+
+Enter:
+
+Customer name
+Phone
+KNUST delivery address
+
+SCENE 6
+
+Place order.
+
+Show:
+
+ORDER #MK-XXXX
+
+SCENE 7
+
+Open admin dashboard.
+
+Show:
+
+New order
+
+SCENE 8
+
+Open order.
+
+Change:
+
+Pending
+→ Confirmed
+→ Preparing
+→ Ready
+
+SCENE 9
+
+Return to customer tracking.
+
+Show updated status.
+
+SCENE 10
+
+Click:
+
+Continue on WhatsApp
+
+Show generated order message.
+
+This should feel like a genuine software product demonstration.
+
+---
+
+# 68. POLISH PASS
+
+After all functionality is working, perform one additional pass ONLY for polish.
+
+Improve:
+
+* typography
+* spacing
+* visual hierarchy
+* image cropping
+* button states
+* hover states
+* transitions
+* loading states
+* empty states
+* mobile layout
+* dashboard readability
+* form UX
+* error messages
+* accessibility
+
+Do not add features during this pass unless they are necessary to fix a serious UX problem.
+
+---
+
+# 69. FINAL OUTPUT
+
+When the build is complete, provide:
+
+1. Final project structure.
+2. Technology stack.
+3. Implemented features.
+4. Database schema summary.
+5. Environment variables.
+6. Local setup commands.
+7. Database migration commands.
+8. Seed commands.
+9. Development admin credentials.
+10. Production build command.
+11. Deployment instructions.
+12. Known limitations.
+13. External credentials still required, if any.
+14. Exact commands to run the project.
+
+Most importantly:
+
+DO NOT STOP AT WRITING CODE.
+
+BUILD THE ACTUAL APPLICATION.
+
+RUN IT.
+
+TEST IT.
+
+FIX IT.
+
+POLISH IT.
+
+BUILD IT AGAIN.
+
+LEAVE IT IN A STATE WHERE I CAN OPEN THE WEBSITE AND USE IT.
+
+The final standard is:
+
+"Could this realistically be shown to a restaurant owner as a professional product?"
+
+If the answer is no, keep improving it.
