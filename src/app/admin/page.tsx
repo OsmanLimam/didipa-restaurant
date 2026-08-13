@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { motion } from 'framer-motion';
 import {
   DollarSign,
   ShoppingBag,
@@ -12,6 +13,7 @@ import {
 } from 'lucide-react';
 import { formatPriceShort } from '@/lib/constants';
 import { getStatusConfig } from '@/lib/order-utils';
+import { AnimatedCounter } from '@/components/admin/animated-counter';
 import Link from 'next/link';
 import {
   BarChart,
@@ -49,6 +51,16 @@ interface DashboardData {
   }[];
 }
 
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+};
+
+const staggerItem = {
+  hidden: { opacity: 0, y: 20, scale: 0.95 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: 'easeOut' } },
+};
+
 export default function AdminDashboardPage() {
   const [data, setData] = useState<DashboardData | null>(null);
   const [analyticsData, setAnalyticsData] = useState<{
@@ -84,27 +96,35 @@ export default function AdminDashboardPage() {
   const stats = [
     {
       title: "Today's Revenue",
-      value: formatPriceShort(data.todayRevenue),
+      value: data.todayRevenue,
+      displayValue: formatPriceShort(data.todayRevenue),
       icon: DollarSign,
       color: "text-green-600",
+      isPrice: true,
     },
     {
       title: "Today's Orders",
       value: data.todayCount,
+      displayValue: data.todayCount,
       icon: ShoppingBag,
       color: "text-primary",
+      isPrice: false,
     },
     {
       title: "Pending Orders",
       value: data.pendingOrders,
+      displayValue: data.pendingOrders,
       icon: Clock,
       color: "text-yellow-600",
+      isPrice: false,
     },
     {
       title: "Completed Today",
       value: data.completedToday,
+      displayValue: data.completedToday,
       icon: CheckCircle2,
       color: "text-emerald-600",
+      isPrice: false,
     },
   ];
 
@@ -128,31 +148,46 @@ export default function AdminDashboardPage() {
     : [];
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold">Dashboard</h1>
+    <motion.div
+      className="space-y-6"
+      initial="hidden"
+      animate="visible"
+      variants={staggerContainer}
+    >
+      <motion.h1 variants={staggerItem} className="text-2xl font-bold">Dashboard</motion.h1>
 
       {/* Stats Cards */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {stats.map((stat) => {
+      <motion.div variants={staggerItem} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {stats.map((stat, i) => {
           const Icon = stat.icon;
           return (
-            <Card key={stat.title}>
-              <CardContent className="p-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-muted-foreground">{stat.title}</p>
-                    <p className="text-2xl font-bold mt-1">{stat.value}</p>
+            <motion.div
+              key={stat.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1, duration: 0.4 }}
+              whileHover={{ y: -2, boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }}
+            >
+              <Card>
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-muted-foreground">{stat.title}</p>
+                      <div className="text-2xl font-bold mt-1">
+                        <AnimatedCounter value={stat.value} prefix={stat.isPrice ? '₵' : ''} />
+                      </div>
+                    </div>
+                    <Icon className={`h-8 w-8 ${stat.color} opacity-20`} />
                   </div>
-                  <Icon className={`h-8 w-8 ${stat.color} opacity-20`} />
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </motion.div>
           );
         })}
-      </div>
+      </motion.div>
 
       {/* Charts */}
-      <div className="grid lg:grid-cols-2 gap-6">
+      <motion.div variants={staggerItem} className="grid lg:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
             <CardTitle className="text-lg">Revenue (Last 7 Days)</CardTitle>
@@ -194,9 +229,9 @@ export default function AdminDashboardPage() {
             )}
           </CardContent>
         </Card>
-      </div>
+      </motion.div>
 
-      <div className="grid lg:grid-cols-2 gap-6">
+      <motion.div variants={staggerItem} className="grid lg:grid-cols-2 gap-6">
         {/* Recent Orders */}
         <Card>
           <CardHeader>
@@ -204,30 +239,37 @@ export default function AdminDashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {data.recentOrders.slice(0, 8).map((order) => {
+              {data.recentOrders.slice(0, 8).map((order, i) => {
                 const statusConfig = getStatusConfig(order.status);
                 return (
-                  <Link key={order.id} href={`/admin/orders/${order.id}`}>
-                    <div className="flex items-center justify-between text-sm py-2 border-b last:border-0 hover:bg-muted/50 -mx-2 px-2 rounded transition-colors cursor-pointer">
-                      <div className="flex items-center gap-3">
-                        <span className="font-medium">{order.orderNumber}</span>
-                        <span className="text-muted-foreground">
-                          {order.customer.name}
-                        </span>
+                  <motion.div
+                    key={order.id}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05, duration: 0.3 }}
+                  >
+                    <Link href={`/admin/orders/${order.id}`}>
+                      <div className="flex items-center justify-between text-sm py-2 border-b last:border-0 hover:bg-muted/50 -mx-2 px-2 rounded transition-colors cursor-pointer">
+                        <div className="flex items-center gap-3">
+                          <span className="font-medium">{order.orderNumber}</span>
+                          <span className="text-muted-foreground">
+                            {order.customer.name}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <span className="font-medium">
+                            {formatPriceShort(order.total)}
+                          </span>
+                          <Badge
+                            variant="secondary"
+                            className={statusConfig.color}
+                          >
+                            {statusConfig.label}
+                          </Badge>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-3">
-                        <span className="font-medium">
-                          {formatPriceShort(order.total)}
-                        </span>
-                        <Badge
-                          variant="secondary"
-                          className={statusConfig.color}
-                        >
-                          {statusConfig.label}
-                        </Badge>
-                      </div>
-                    </div>
-                  </Link>
+                    </Link>
+                  </motion.div>
                 );
               })}
             </div>
@@ -245,8 +287,11 @@ export default function AdminDashboardPage() {
           <CardContent>
             <div className="space-y-3">
               {data.popularItems.map((item, idx) => (
-                <div
+                <motion.div
                   key={item.name}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: idx * 0.05, duration: 0.3 }}
                   className="flex items-center justify-between text-sm py-2 border-b last:border-0"
                 >
                   <div className="flex items-center gap-3">
@@ -258,32 +303,34 @@ export default function AdminDashboardPage() {
                   <span className="text-muted-foreground">
                     {item._sum.quantity || 0} sold
                   </span>
-                </div>
+                </motion.div>
               ))}
             </div>
           </CardContent>
         </Card>
-      </div>
+      </motion.div>
 
       {/* Summary */}
-      <Card>
-        <CardContent className="p-4">
-          <div className="grid sm:grid-cols-3 gap-4 text-center">
-            <div>
-              <p className="text-sm text-muted-foreground">Total Revenue</p>
-              <p className="text-xl font-bold">{formatPriceShort(data.totalRevenue)}</p>
+      <motion.div variants={staggerItem}>
+        <Card>
+          <CardContent className="p-4">
+            <div className="grid sm:grid-cols-3 gap-4 text-center">
+              <div>
+                <p className="text-sm text-muted-foreground">Total Revenue</p>
+                <AnimatedCounter value={data.totalRevenue} prefix="₵" className="text-xl font-bold" />
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground">Total Orders</p>
+                <AnimatedCounter value={data.totalOrders} className="text-xl font-bold" />
+              </div>
+              <div>
+                <p className="text-sm text-muted-foreground">Avg Order Value</p>
+                <AnimatedCounter value={data.avgOrderValue} prefix="₵" className="text-xl font-bold" />
+              </div>
             </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Total Orders</p>
-              <p className="text-xl font-bold">{data.totalOrders}</p>
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground">Avg Order Value</p>
-              <p className="text-xl font-bold">{formatPriceShort(data.avgOrderValue)}</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+          </CardContent>
+        </Card>
+      </motion.div>
+    </motion.div>
   );
 }

@@ -1,5 +1,28 @@
 'use client';
 
+import { Suspense } from 'react';
+
+// Wrapper to provide Suspense boundary for useSearchParams
+export default function MenuPageWrapper() {
+  return (
+    <Suspense fallback={
+      <div className="container mx-auto px-4 py-6">
+        <div className="mb-6">
+          <div className="h-8 w-32 bg-muted rounded animate-pulse" />
+          <div className="h-4 w-48 bg-muted rounded animate-pulse mt-2" />
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div key={i} className="bg-muted rounded-lg animate-pulse aspect-[3/4]" />
+          ))}
+        </div>
+      </div>
+    }>
+      <MenuContent />
+    </Suspense>
+  );
+}
+
 import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
@@ -36,7 +59,7 @@ interface Category {
   _count: { menuItems: number };
 }
 
-export default function MenuPage() {
+function MenuContent() {
   const searchParams = useSearchParams();
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -162,8 +185,8 @@ export default function MenuPage() {
       ) : (
         <motion.div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" initial="hidden" animate="visible" variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.06 } } }}>
           {filteredItems.map((item) => (
-            <motion.div key={item.id} variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.3 } } }}>
-            <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+            <motion.div key={item.id} variants={{ hidden: { opacity: 0, y: 20, scale: 0.95 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.35, ease: 'easeOut' } } }} whileHover={{ y: -4 }} whileTap={{ scale: 0.98 }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
+            <Card className="group overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
               <Link href={`/menu/${item.slug}`} className="flex-1 flex flex-col">
                 <div className="aspect-[4/3] bg-muted relative overflow-hidden">
                   {item.image ? (

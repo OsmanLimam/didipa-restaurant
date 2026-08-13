@@ -91,7 +91,7 @@ export async function CustomerFooter() {
             &copy; {new Date().getFullYear()} Mama&apos;s Kitchen. All rights reserved.
           </p>
           <p className="text-xs text-muted-foreground">
-            Made with ❤️ in Accra, Ghana
+            Made with ❤️ in Kumasi, Ghana
           </p>
         </div>
       </div>

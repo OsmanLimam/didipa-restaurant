@@ -6,7 +6,7 @@ import { UtensilsCrossed, Star, Clock, MapPin, Truck, ChevronRight, Flame } from
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { HomeAnimations } from './home-animations';
+import { HomeAnimations, HeroAnimations, HeroItem, StaggerGrid, StaggerItem, FadeIn } from './home-animations';
 
 export default async function HomePage() {
   const [popularItems, categories, testimonials, restaurant] = await Promise.all([
@@ -49,32 +49,42 @@ export default async function HomePage() {
             />
           </div>
           <div className="relative container mx-auto px-4 py-16 md:py-24">
-            <div className="max-w-2xl space-y-6">
-              <Badge variant="secondary" className="bg-white/20 text-white border-0 backdrop-blur-sm">
-                <Flame className="h-3 w-3 mr-1" /> Authentic Ghanaian Cuisine
-              </Badge>
-              <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground leading-tight">
-                Delicious Food, <br />
-                <span className="text-primary-foreground/80">Made with Love</span>
-              </h1>
-              <p className="text-lg md:text-xl text-primary-foreground/70 max-w-lg">
-                From jollof rice to banku & okro soup — order your favorite Ghanaian dishes for delivery or pickup.
-              </p>
-              <div className="flex flex-wrap gap-3 pt-2">
-                <Button size="lg" variant="secondary" className="text-base" asChild>
-                  <Link href="/menu">
-                    <UtensilsCrossed className="mr-2 h-5 w-5" />
-                    Explore Menu
-                  </Link>
-                </Button>
-                <Button size="lg" variant="outline" className="text-base border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10" asChild>
-                  <Link href="/menu">
-                    Order Now
-                    <ChevronRight className="ml-1 h-4 w-4" />
-                  </Link>
-                </Button>
+            <HeroAnimations>
+              <div className="max-w-2xl space-y-6">
+                <HeroItem>
+                  <Badge variant="secondary" className="bg-white/20 text-white border-0 backdrop-blur-sm">
+                    <Flame className="h-3 w-3 mr-1" /> Authentic Ghanaian Cuisine
+                  </Badge>
+                </HeroItem>
+                <HeroItem>
+                  <h1 className="text-4xl md:text-6xl font-bold text-primary-foreground leading-tight">
+                    Delicious Food, <br />
+                    <span className="text-primary-foreground/80">Made with Love</span>
+                  </h1>
+                </HeroItem>
+                <HeroItem>
+                  <p className="text-lg md:text-xl text-primary-foreground/70 max-w-lg">
+                    From jollof rice to banku & okro soup — order your favorite Ghanaian dishes for delivery or pickup.
+                  </p>
+                </HeroItem>
+                <HeroItem>
+                  <div className="flex flex-wrap gap-3 pt-2">
+                    <Button size="lg" variant="secondary" className="text-base" asChild>
+                      <Link href="/menu">
+                        <UtensilsCrossed className="mr-2 h-5 w-5" />
+                        Explore Menu
+                      </Link>
+                    </Button>
+                    <Button size="lg" variant="outline" className="text-base border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10" asChild>
+                      <Link href="/menu">
+                        Order Now
+                        <ChevronRight className="ml-1 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </div>
+                </HeroItem>
               </div>
-            </div>
+            </HeroAnimations>
           </div>
         </section>
 
@@ -89,7 +99,7 @@ export default async function HomePage() {
         </section>
 
         {/* Popular Meals */}
-        <section className="container mx-auto px-4 py-12">
+        <FadeIn className="container mx-auto px-4 py-12">
           <div className="flex items-center justify-between mb-6">
             <div>
               <h2 className="text-2xl font-bold">Popular Meals</h2>
@@ -101,90 +111,96 @@ export default async function HomePage() {
               </Link>
             </Button>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" data-animate="stagger">
+          <StaggerGrid className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {popularItems.map((item) => (
-              <Link key={item.id} href={`/menu/${item.slug}`}>
-                <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300 h-full">
-                  <div className="aspect-[4/3] bg-muted relative overflow-hidden">
-                    {item.image ? (
-                      <Image src={item.image} alt={item.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw" />
-                    ) : (
-                      <div className="flex items-center justify-center h-full">
-                        <UtensilsCrossed className="h-10 w-10 text-muted-foreground/30" />
-                      </div>
-                    )}
-                    <Badge className="absolute top-2 left-2 bg-primary text-primary-foreground text-[10px]">
-                      <Flame className="h-2.5 w-2.5 mr-0.5" /> Popular
-                    </Badge>
-                  </div>
-                  <CardContent className="p-3">
-                    <p className="font-semibold text-sm line-clamp-1">{item.name}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{item.category.name}</p>
-                    <p className="text-primary font-bold mt-1">{formatPrice(item.price)}</p>
-                  </CardContent>
-                </Card>
-              </Link>
+              <StaggerItem key={item.id}>
+                <Link href={`/menu/${item.slug}`}>
+                  <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300 h-full">
+                    <div className="aspect-[4/3] bg-muted relative overflow-hidden">
+                      {item.image ? (
+                        <Image src={item.image} alt={item.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw" />
+                      ) : (
+                        <div className="flex items-center justify-center h-full">
+                          <UtensilsCrossed className="h-10 w-10 text-muted-foreground/30" />
+                        </div>
+                      )}
+                      <Badge className="absolute top-2 left-2 bg-primary text-primary-foreground text-[10px]">
+                        <Flame className="h-2.5 w-2.5 mr-0.5" /> Popular
+                      </Badge>
+                    </div>
+                    <CardContent className="p-3">
+                      <p className="font-semibold text-sm line-clamp-1">{item.name}</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{item.category.name}</p>
+                      <p className="text-primary font-bold mt-1">{formatPrice(item.price)}</p>
+                    </CardContent>
+                  </Card>
+                </Link>
+              </StaggerItem>
             ))}
-          </div>
-        </section>
+          </StaggerGrid>
+        </FadeIn>
 
         {/* Categories */}
-        <section className="bg-muted/30">
+        <FadeIn className="bg-muted/30">
           <div className="container mx-auto px-4 py-12">
             <div className="text-center mb-8">
               <h2 className="text-2xl font-bold">Browse by Category</h2>
               <p className="text-muted-foreground text-sm mt-1">Find what you&apos;re craving</p>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4" data-animate="stagger">
+            <StaggerGrid className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {categories.map((cat) => (
-                <Link key={cat.id} href={`/menu?category=${cat.slug}`}>
-                  <Card className="group hover:shadow-md transition-all duration-200 hover:border-primary/30">
-                    <CardContent className="p-6 text-center">
-                      <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/20 transition-colors">
-                        <UtensilsCrossed className="h-6 w-6 text-primary" />
-                      </div>
-                      <p className="font-semibold">{cat.name}</p>
-                      <p className="text-xs text-muted-foreground mt-1">
-                        {cat._count.menuItems} {cat._count.menuItems === 1 ? 'item' : 'items'}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </Link>
+                <StaggerItem key={cat.id}>
+                  <Link href={`/menu?category=${cat.slug}`}>
+                    <Card className="group hover:shadow-md transition-all duration-200 hover:border-primary/30">
+                      <CardContent className="p-6 text-center">
+                        <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/20 transition-colors">
+                          <UtensilsCrossed className="h-6 w-6 text-primary" />
+                        </div>
+                        <p className="font-semibold">{cat.name}</p>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          {cat._count.menuItems} {cat._count.menuItems === 1 ? 'item' : 'items'}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGrid>
           </div>
-        </section>
+        </FadeIn>
 
         {/* Testimonials */}
         {testimonials.length > 0 && (
-          <section className="container mx-auto px-4 py-12">
+          <FadeIn className="container mx-auto px-4 py-12">
             <div className="text-center mb-8">
               <h2 className="text-2xl font-bold">What Our Customers Say</h2>
               <p className="text-muted-foreground text-sm mt-1">Real reviews from real food lovers</p>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4" data-animate="stagger">
+            <StaggerGrid className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {testimonials.map((t) => (
-                <Card key={t.id} className="h-full">
-                  <CardContent className="p-6">
-                    <div className="flex gap-0.5 mb-3">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`h-4 w-4 ${i < t.rating ? 'fill-yellow-400 text-yellow-400' : 'text-muted-foreground/30'}`}
-                        />
-                      ))}
-                    </div>
-                    <p className="text-sm text-muted-foreground line-clamp-4 italic">&quot;{t.text}&quot;</p>
-                    <p className="font-semibold text-sm mt-4">— {t.name}</p>
-                  </CardContent>
-                </Card>
+                <StaggerItem key={t.id}>
+                  <Card className="h-full">
+                    <CardContent className="p-6">
+                      <div className="flex gap-0.5 mb-3">
+                        {Array.from({ length: 5 }).map((_, i) => (
+                          <Star
+                            key={i}
+                            className={`h-4 w-4 ${i < t.rating ? 'fill-yellow-400 text-yellow-400' : 'text-muted-foreground/30'}`}
+                          />
+                        ))}
+                      </div>
+                      <p className="text-sm text-muted-foreground line-clamp-4 italic">&quot;{t.text}&quot;</p>
+                      <p className="font-semibold text-sm mt-4">— {t.name}</p>
+                    </CardContent>
+                  </Card>
+                </StaggerItem>
               ))}
-            </div>
-          </section>
+            </StaggerGrid>
+          </FadeIn>
         )}
 
         {/* Opening Hours & Location */}
-        <section className="bg-muted/30">
+        <FadeIn className="bg-muted/30">
           <div className="container mx-auto px-4 py-12">
             <div className="grid md:grid-cols-2 gap-8">
               <Card>
@@ -227,7 +243,7 @@ export default async function HomePage() {
                   </div>
                   <div className="space-y-3">
                     <p className="text-sm">
-                      {restaurant?.address || 'Accra, Ghana'}
+                      {restaurant?.address || 'Kumasi, Ghana'}
                     </p>
                     {restaurant?.phone && (
                       <p className="text-sm flex items-center gap-2">
@@ -250,7 +266,7 @@ export default async function HomePage() {
               </Card>
             </div>
           </div>
-        </section>
+        </FadeIn>
       </div>
     </HomeAnimations>
   );

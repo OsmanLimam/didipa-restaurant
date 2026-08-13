@@ -36,9 +36,9 @@ async function main() {
     data: {
       name: "Mama's Kitchen",
       description: 'A modern Ghanaian restaurant serving delicious local and contemporary meals with convenient ordering and delivery. From the rich flavors of Jollof Rice to the comforting warmth of Light Soup, every dish tells the story of home.',
-      phone: '+233 24 123 4567',
-      whatsappNumber: '233241234567',
-      address: '12 Oxford Street, Osu, Accra, Ghana',
+      phone: '+233 53 682 8150',
+      whatsappNumber: '233536828150',
+      address: 'KNUST Campus, Kumasi, Ghana',
       deliveryFee: 10.0,
       minimumOrder: 20.0,
       preparationTime: 30,
@@ -71,50 +71,50 @@ async function main() {
     db.category.create({ data: { name: 'Desserts & Snacks', slug: 'desserts-snacks', description: 'Sweet treats', displayOrder: 6 } }),
   ]);
 
-  // Food images - using reliable Unsplash photos
-  const img = (id: string) => `https://images.unsplash.com/photo-${id}?w=800&h=600&fit=crop&q=80`;
+  // Food images - using real Ghanaian food photos from image search
+  const img = (url: string) => url;
 
   // Menu items
   const menuItemsData = [
     // Local Favorites
-    { name: 'Jollof Rice & Chicken', slug: 'jollof-rice-chicken', description: 'Smoky tomato-based rice paired with perfectly grilled chicken — Ghana\'s most iconic dish', price: 45, image: img('1604328738361-e5a7e5c5e5c5'), isPopular: true, preparationTime: 25, ingredients: 'Rice, tomato, onion, pepper, chicken, vegetable oil, spices', categoryId: categories[0].id },
-    { name: 'Banku & Okro Soup', slug: 'banku-okro-soup', description: 'Fermented corn and cassava dough served with slimy okro soup — a comfort food classic', price: 35, image: img('1547592168-23d2b584d099'), isPopular: true, preparationTime: 20, ingredients: 'Corn dough, cassava dough, okro, palm oil, fish, pepper', categoryId: categories[0].id },
-    { name: 'Waakye', slug: 'waakye', description: 'Rice and beans cooked with millet leaves, served with shito, salad and protein', price: 30, image: img('1512058564-ba8b7c00c2d5'), isPopular: true, preparationTime: 30, ingredients: 'Rice, beans, millet leaves, shito, vegetable salad', categoryId: categories[0].id },
-    { name: 'Fufu & Light Soup', slug: 'fufu-light-soup', description: 'Pounded cassava and plantain with aromatic goat light soup', price: 40, image: img('1504674900702-479a2e3db4c9'), preparationTime: 25, ingredients: 'Cassava, plantain, goat meat, pepper, tomato, spices', categoryId: categories[0].id },
-    { name: 'Kenkey & Fried Fish', slug: 'kenkey-fried-fish', description: 'Fermented corn dumpling wrapped in leaves with crispy fried fish and pepper sauce', price: 28, image: img('1551182013-7a60a7f0d10'), preparationTime: 20, ingredients: 'Corn dough, fish, pepper, vegetable oil', categoryId: categories[0].id },
+    { name: 'Jollof Rice & Chicken', slug: 'jollof-rice-chicken', description: 'Smoky tomato-based rice paired with perfectly grilled chicken — Ghana\'s most iconic dish', price: 45, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/396d3145e121.jpg'), isPopular: true, preparationTime: 25, ingredients: 'Rice, tomato, onion, pepper, chicken, vegetable oil, spices', categoryId: categories[0].id },
+    { name: 'Banku & Okro Soup', slug: 'banku-okro-soup', description: 'Fermented corn and cassava dough served with slimy okro soup — a comfort food classic', price: 35, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/d2b140dfa603.jpg'), isPopular: true, preparationTime: 20, ingredients: 'Corn dough, cassava dough, okro, palm oil, fish, pepper', categoryId: categories[0].id },
+    { name: 'Waakye', slug: 'waakye', description: 'Rice and beans cooked with millet leaves, served with shito, salad and protein', price: 30, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/c31ab27bb3a8.jpg'), isPopular: true, preparationTime: 30, ingredients: 'Rice, beans, millet leaves, shito, vegetable salad', categoryId: categories[0].id },
+    { name: 'Fufu & Light Soup', slug: 'fufu-light-soup', description: 'Pounded cassava and plantain with aromatic goat light soup', price: 40, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/2e13109d113e.jpg'), preparationTime: 25, ingredients: 'Cassava, plantain, goat meat, pepper, tomato, spices', categoryId: categories[0].id },
+    { name: 'Kenkey & Fried Fish', slug: 'kenkey-fried-fish', description: 'Fermented corn dumpling wrapped in leaves with crispy fried fish and pepper sauce', price: 28, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/9eb9af53d174.jpg'), preparationTime: 20, ingredients: 'Corn dough, fish, pepper, vegetable oil', categoryId: categories[0].id },
 
     // Rice Dishes
-    { name: 'Fried Rice', slug: 'fried-rice', description: 'Wok-tossed rice with vegetables, egg, and your choice of protein', price: 35, image: img('1513333343321-5934c11b7e6a'), isPopular: false, preparationTime: 15, ingredients: 'Rice, vegetables, egg, soy sauce, chicken', categoryId: categories[1].id },
-    { name: 'Omotuo (Rice Balls)', slug: 'omotuo', description: 'Moulded rice balls served with groundnut or palm nut soup', price: 25, image: img('1585937758757-39a0444e0f13'), preparationTime: 20, ingredients: 'Rice, groundnut soup, palm nut soup, meat', categoryId: categories[1].id },
-    { name: 'Plain Rice & Stew', slug: 'plain-rice-stew', description: 'Fluffy long grain rice with rich tomato stew and grilled chicken', price: 30, image: img('1534423986879-0e7cb9e0b64d'), preparationTime: 15, ingredients: 'Rice, tomato, onion, pepper, chicken, vegetable oil', categoryId: categories[1].id },
+    { name: 'Fried Rice', slug: 'fried-rice', description: 'Wok-tossed rice with vegetables, egg, and your choice of protein', price: 35, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/e646bffa0ef3.jpg'), isPopular: false, preparationTime: 15, ingredients: 'Rice, vegetables, egg, soy sauce, chicken', categoryId: categories[1].id },
+    { name: 'Omotuo (Rice Balls)', slug: 'omotuo', description: 'Moulded rice balls served with groundnut or palm nut soup', price: 25, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/b76d82b5cbcc.jpg'), preparationTime: 20, ingredients: 'Rice, groundnut soup, palm nut soup, meat', categoryId: categories[1].id },
+    { name: 'Plain Rice & Stew', slug: 'plain-rice-stew', description: 'Fluffy long grain rice with rich tomato stew and grilled chicken', price: 30, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/04ace3088a2d.jpg'), preparationTime: 15, ingredients: 'Rice, tomato, onion, pepper, chicken, vegetable oil', categoryId: categories[1].id },
 
     // Soups & Stews
-    { name: 'Red Red', slug: 'red-red', description: 'Black-eyed peas stew in palm oil served with fried plantain — a vegetarian delight', price: 25, image: img('1505253718458-911e3d57c331'), isPopular: false, preparationTime: 20, ingredients: 'Black-eyed peas, palm oil, onion, pepper, plantain', categoryId: categories[2].id },
-    { name: 'Palava Sauce', slug: 'palava-sauce', description: 'Spinach and egusi stew served with rice or yam — rich and nutritious', price: 30, image: img('1563379926868-07c77f8b3c2d'), preparationTime: 25, ingredients: 'Spinach, egusi, palm oil, fish, onion, pepper', categoryId: categories[2].id },
-    { name: 'Egusi Soup', slug: 'egusi-soup', description: 'Melon seed soup with assorted meat and fish — thick, rich, and satisfying', price: 35, image: img('1476718406336-8f059cc4b66c'), preparationTime: 25, ingredients: 'Egusi, palm oil, assorted meat, fish, pepper', categoryId: categories[2].id },
-    { name: 'Groundnut Soup', slug: 'groundnut-soup', description: 'Rich peanut soup with tender chicken — perfect with rice or fufu', price: 32, image: img('1547592168-23d2b584d099'), preparationTime: 25, ingredients: 'Groundnut paste, chicken, tomato, onion, pepper', categoryId: categories[2].id },
+    { name: 'Red Red', slug: 'red-red', description: 'Black-eyed peas stew in palm oil served with fried plantain — a vegetarian delight', price: 25, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/2737c3518f7c.png'), isPopular: false, preparationTime: 20, ingredients: 'Black-eyed peas, palm oil, onion, pepper, plantain', categoryId: categories[2].id },
+    { name: 'Palava Sauce', slug: 'palava-sauce', description: 'Spinach and egusi stew served with rice or yam — rich and nutritious', price: 30, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/55c199cf2ee3.jpg'), preparationTime: 25, ingredients: 'Spinach, egusi, palm oil, fish, onion, pepper', categoryId: categories[2].id },
+    { name: 'Egusi Soup', slug: 'egusi-soup', description: 'Melon seed soup with assorted meat and fish — thick, rich, and satisfying', price: 35, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/f01793896b68.jpg'), preparationTime: 25, ingredients: 'Egusi, palm oil, assorted meat, fish, pepper', categoryId: categories[2].id },
+    { name: 'Groundnut Soup', slug: 'groundnut-soup', description: 'Rich peanut soup with tender chicken — perfect with rice or fufu', price: 32, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/bd6c78dc5ae2.jpg'), preparationTime: 25, ingredients: 'Groundnut paste, chicken, tomato, onion, pepper', categoryId: categories[2].id },
 
     // Grills & Proteins
-    { name: 'Grilled Tilapia', slug: 'grilled-tilapia', description: 'Whole tilapia grilled to perfection with pepper sauce and lemon', price: 55, image: img('1529692236671-61f9ee73c3b7'), isPopular: true, preparationTime: 30, ingredients: 'Tilapia, pepper, lemon, vegetable oil, spices', categoryId: categories[3].id },
-    { name: 'Suya', slug: 'suya', description: 'Spicy grilled beef skewers with groundnuts and onion — West African street food at its finest', price: 20, image: img('1555937758757-39a0444e0f13'), isPopular: true, preparationTime: 15, ingredients: 'Beef, suya spice, groundnut oil, onion, groundnuts', categoryId: categories[3].id },
-    { name: 'Fried Yam & Fish', slug: 'fried-yam-fish', description: 'Crispy fried yam slices with fried fish and shito pepper sauce', price: 25, image: img('1585937758757-39a0444e0f13'), preparationTime: 15, ingredients: 'Yam, fish, shito, vegetable oil', categoryId: categories[3].id },
+    { name: 'Grilled Tilapia', slug: 'grilled-tilapia', description: 'Whole tilapia grilled to perfection with pepper sauce and lemon', price: 55, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/58bb8bdf2c8a.jpg'), isPopular: true, preparationTime: 30, ingredients: 'Tilapia, pepper, lemon, vegetable oil, spices', categoryId: categories[3].id },
+    { name: 'Suya', slug: 'suya', description: 'Spicy grilled beef skewers with groundnuts and onion — West African street food at its finest', price: 20, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/f36dd9c8a73b.jpg'), isPopular: true, preparationTime: 15, ingredients: 'Beef, suya spice, groundnut oil, onion, groundnuts', categoryId: categories[3].id },
+    { name: 'Fried Yam & Fish', slug: 'fried-yam-fish', description: 'Crispy fried yam slices with fried fish and shito pepper sauce', price: 25, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/de070d06e1ae.jpg'), preparationTime: 15, ingredients: 'Yam, fish, shito, vegetable oil', categoryId: categories[3].id },
 
     // Sides
-    { name: 'Kelewele', slug: 'kelewele', description: 'Spicy fried plantain cubes with ginger and pepper — Ghana\'s favorite snack', price: 15, image: img('1505253718458-911e3d57c331'), isPopular: true, preparationTime: 10, ingredients: 'Plantain, ginger, pepper, vegetable oil', categoryId: categories[4].id },
-    { name: 'Fried Plantain', slug: 'fried-plantain', description: 'Sweet ripe plantain fried to golden perfection', price: 12, image: img('1505253718458-911e3d57c331'), preparationTime: 8, ingredients: 'Plantain, vegetable oil', categoryId: categories[4].id },
-    { name: 'Gari Foto', slug: 'gari-foto', description: 'Cassava flakes stir-fried with egg, onion, and pepper', price: 18, image: img('1534423986879-0e7cb9e0b64d'), preparationTime: 10, ingredients: 'Gari, egg, onion, pepper, vegetable oil', categoryId: categories[4].id },
-    { name: 'Ampesie', slug: 'ampesie', description: 'Boiled cassava and plantain served with kontomire stew', price: 22, image: img('1547592168-23d2b584d099'), preparationTime: 20, ingredients: 'Cassava, plantain, kontomire, palm oil', categoryId: categories[4].id },
-    { name: 'Tuo Zaafi', slug: 'tuo-zaafi', description: 'Corn and cassava meal with dawadawa soup — Northern Ghana specialty', price: 35, image: img('1476718406336-8f059cc4b66c'), preparationTime: 25, ingredients: 'Corn flour, cassava flour, dawadawa, leaf, meat', categoryId: categories[4].id },
+    { name: 'Kelewele', slug: 'kelewele', description: 'Spicy fried plantain cubes with ginger and pepper — Ghana\'s favorite snack', price: 15, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/050ed9da0c73.jpg'), isPopular: true, preparationTime: 10, ingredients: 'Plantain, ginger, pepper, vegetable oil', categoryId: categories[4].id },
+    { name: 'Fried Plantain', slug: 'fried-plantain', description: 'Sweet ripe plantain fried to golden perfection', price: 12, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/2cc11a62f05f.jpg'), preparationTime: 8, ingredients: 'Plantain, vegetable oil', categoryId: categories[4].id },
+    { name: 'Gari Foto', slug: 'gari-foto', description: 'Cassava flakes stir-fried with egg, onion, and pepper', price: 18, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/5c356e3dcd32.jpg'), preparationTime: 10, ingredients: 'Gari, egg, onion, pepper, vegetable oil', categoryId: categories[4].id },
+    { name: 'Ampesie', slug: 'ampesie', description: 'Boiled cassava and plantain served with kontomire stew', price: 22, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/9eb9af53d174.jpg'), preparationTime: 20, ingredients: 'Cassava, plantain, kontomire, palm oil', categoryId: categories[4].id },
+    { name: 'Tuo Zaafi', slug: 'tuo-zaafi', description: 'Corn and cassava meal with dawadawa soup — Northern Ghana specialty', price: 35, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3e0b24340d6f.jpg'), preparationTime: 25, ingredients: 'Corn flour, cassava flour, dawadawa, leaf, meat', categoryId: categories[4].id },
 
     // Beverages
-    { name: 'Sobolo', slug: 'sobolo', description: 'Refreshing hibiscus drink with ginger and pineapple — naturally cooling', price: 8, image: img('1544145949-f4e0dee4b371'), isPopular: true, preparationTime: 2, ingredients: 'Hibiscus, ginger, pineapple, sugar', categoryId: categories[5].id },
-    { name: 'Palm Wine', slug: 'palm-wine', description: 'Fresh palm wine served chilled — a traditional Ghanaian favorite', price: 10, image: img('1544145949-f4e0dee4b371'), preparationTime: 2, ingredients: 'Palm sap', categoryId: categories[5].id },
-    { name: 'Asaana', slug: 'asaana', description: 'Fermented corn drink — sweet, tangy, and refreshing', price: 5, image: img('1544145949-f4e0dee4b371'), preparationTime: 2, ingredients: 'Fermented corn, sugar', categoryId: categories[5].id },
-    { name: 'Bottled Water', slug: 'bottled-water', description: 'Pure refreshing water', price: 3, image: img('1544145949-f4e0dee4b371'), preparationTime: 0, ingredients: 'Water', categoryId: categories[5].id },
+    { name: 'Sobolo', slug: 'sobolo', description: 'Refreshing hibiscus drink with ginger and pineapple — naturally cooling', price: 8, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/f429d63889d3.jpg'), isPopular: true, preparationTime: 2, ingredients: 'Hibiscus, ginger, pineapple, sugar', categoryId: categories[5].id },
+    { name: 'Palm Wine', slug: 'palm-wine', description: 'Fresh palm wine served chilled — a traditional Ghanaian favorite', price: 10, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/460c42a2ff4d.jpg'), preparationTime: 2, ingredients: 'Palm sap', categoryId: categories[5].id },
+    { name: 'Asaana', slug: 'asaana', description: 'Fermented corn drink — sweet, tangy, and refreshing', price: 5, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/3e0b24340d6f.jpg'), preparationTime: 2, ingredients: 'Fermented corn, sugar', categoryId: categories[5].id },
+    { name: 'Bottled Water', slug: 'bottled-water', description: 'Pure refreshing water', price: 3, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/460c42a2ff4d.jpg'), preparationTime: 0, ingredients: 'Water', categoryId: categories[5].id },
 
     // Desserts & Snacks
-    { name: 'Meat Pie', slug: 'meat-pie', description: 'Flaky pastry filled with seasoned minced meat — a classic snack', price: 15, image: img('1488477888279-4e21ba4a5065'), preparationTime: 10, ingredients: 'Flour, minced meat, egg, onion, spices', categoryId: categories[6].id },
-    { name: 'Kelewele with Groundnuts', slug: 'kelewele-groundnuts', description: 'Spicy fried plantain served with roasted groundnuts — the perfect combo', price: 18, image: img('1505253718458-911e3d57c331'), preparationTime: 10, ingredients: 'Plantain, groundnuts, ginger, pepper', categoryId: categories[6].id },
+    { name: 'Meat Pie', slug: 'meat-pie', description: 'Flaky pastry filled with seasoned minced meat — a classic snack', price: 15, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/fd635d75c331.jpg'), preparationTime: 10, ingredients: 'Flour, minced meat, egg, onion, spices', categoryId: categories[6].id },
+    { name: 'Kelewele with Groundnuts', slug: 'kelewele-groundnuts', description: 'Spicy fried plantain served with roasted groundnuts — the perfect combo', price: 18, image: img('https://z-cdn.chatglm.cn/image-search-mcp/images-ppt/af771a6c8856.jpg'), preparationTime: 10, ingredients: 'Plantain, groundnuts, ginger, pepper', categoryId: categories[6].id },
   ];
 
   const menuItems = [];

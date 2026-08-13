@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { UtensilsCrossed, ShoppingCart, Menu, X, Home } from 'lucide-react';
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
@@ -25,7 +26,9 @@ export function CustomerHeader() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <Image src="/logo.png" alt="Mama's Kitchen" width={36} height={36} className="rounded-lg transition-transform group-hover:scale-105" />
+          <motion.div whileHover={{ scale: 1.08, rotate: 3 }} whileTap={{ scale: 0.95 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
+            <Image src="/logo.png" alt="Mama's Kitchen" width={36} height={36} className="rounded-lg" />
+          </motion.div>
           <div className="hidden sm:block">
             <p className="text-lg font-bold leading-none">Mama&apos;s Kitchen</p>
             <p className="text-[10px] text-muted-foreground leading-none mt-0.5">Authentic Ghanaian Cuisine</p>
@@ -58,11 +61,22 @@ export function CustomerHeader() {
             >
               <ShoppingCart className="h-4 w-4" />
               <span>Cart</span>
-              {cartItemCount > 0 && (
-                <Badge className="absolute -right-2 -top-2 h-5 w-5 rounded-full p-0 flex items-center justify-center text-[10px] bg-primary text-primary-foreground">
-                  {cartItemCount}
-                </Badge>
-              )}
+              <AnimatePresence mode="wait">
+                {cartItemCount > 0 && (
+                  <motion.div
+                    key={cartItemCount}
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    exit={{ scale: 0 }}
+                    transition={{ type: "spring", stiffness: 500, damping: 15 }}
+                    className="absolute -right-2 -top-2"
+                  >
+                    <Badge className="h-5 w-5 rounded-full p-0 flex items-center justify-center text-[10px] bg-primary text-primary-foreground">
+                      {cartItemCount}
+                    </Badge>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </Button>
           </Link>
         </nav>
@@ -72,11 +86,22 @@ export function CustomerHeader() {
           <Link href="/cart" className="relative">
             <Button variant="outline" size="icon" className="relative">
               <ShoppingCart className="h-4 w-4" />
-              {cartItemCount > 0 && (
-                <Badge className="absolute -right-1 -top-1 h-4 min-w-4 rounded-full p-0 flex items-center justify-center text-[9px] bg-primary text-primary-foreground">
-                  {cartItemCount}
-                </Badge>
-              )}
+              <AnimatePresence mode="wait">
+                {cartItemCount > 0 && (
+                  <motion.div
+                    key={cartItemCount}
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    exit={{ scale: 0 }}
+                    transition={{ type: "spring", stiffness: 500, damping: 15 }}
+                    className="absolute -right-1 -top-1"
+                  >
+                    <Badge className="h-4 min-w-4 rounded-full p-0 flex items-center justify-center text-[9px] bg-primary text-primary-foreground">
+                      {cartItemCount}
+                    </Badge>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </Button>
           </Link>
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>

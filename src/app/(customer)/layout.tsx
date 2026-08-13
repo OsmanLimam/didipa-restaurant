@@ -1,5 +1,6 @@
 import { CustomerHeader } from '@/components/customer/header';
 import { CustomerFooter } from '@/components/customer/footer';
+import { PageTransition } from '@/components/customer/page-transition';
 
 export default function CustomerLayout({
   children,
@@ -9,7 +10,9 @@ export default function CustomerLayout({
   return (
     <div className="min-h-screen flex flex-col">
       <CustomerHeader />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1">
+        <PageTransition>{children}</PageTransition>
+      </main>
       <CustomerFooter />
     </div>
   );

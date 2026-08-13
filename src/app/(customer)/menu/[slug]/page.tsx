@@ -235,22 +235,32 @@ export default function FoodDetailPage() {
 
           {/* Add to Cart */}
           <div className="sticky bottom-4 bg-background pt-2">
-            <Button
-              size="lg"
-              className="w-full gap-2"
-              onClick={handleAddToCart}
-              disabled={!item.isAvailable || added}
-            >
-              {added ? (
-                <>
-                  <Check className="h-5 w-5" /> Added to Cart!
-                </>
-              ) : (
-                <>
-                  <ShoppingCart className="h-5 w-5" /> Add to Cart — {formatPrice(lineTotal)}
-                </>
-              )}
-            </Button>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
+              <Button
+                size="lg"
+                className="w-full gap-2"
+                onClick={handleAddToCart}
+                disabled={!item.isAvailable || added}
+              >
+                <motion.span
+                  key={added ? 'added' : 'add'}
+                  initial={{ y: 10, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.2 }}
+                  className="flex items-center gap-2"
+                >
+                  {added ? (
+                    <>
+                      <Check className="h-5 w-5" /> Added to Cart!
+                    </>
+                  ) : (
+                    <>
+                      <ShoppingCart className="h-5 w-5" /> Add to Cart — {formatPrice(lineTotal)}
+                    </>
+                  )}
+                </motion.span>
+              </Button>
+            </motion.div>
           </div>
         </motion.div>
       </motion.div>

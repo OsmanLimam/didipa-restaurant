@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Plus, Flame, Clock } from "lucide-react";
 import { useCartStore } from "@/stores/cart-store";
 import { formatPriceShort } from "@/lib/constants";
 import { toast } from "sonner";
+import { staggerItem } from "@/lib/animations";
 
 interface FoodCardProps {
   item: {
@@ -44,7 +46,13 @@ export function FoodCard({ item }: FoodCardProps) {
   };
 
   return (
-    <div className="group relative bg-card rounded-xl border overflow-hidden transition-all hover:shadow-lg">
+    <motion.div
+      variants={staggerItem}
+      whileHover={{ y: -4 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      className="group relative bg-card rounded-xl border overflow-hidden transition-shadow hover:shadow-lg"
+    >
       <Link href={`/menu/${item.slug}`} className="block">
         <div className="relative aspect-[4/3] overflow-hidden bg-muted">
           {item.image ? (
@@ -97,17 +105,19 @@ export function FoodCard({ item }: FoodCardProps) {
               </span>
             )}
           </div>
-          <Button
-            size="sm"
-            onClick={handleAddToCart}
-            disabled={!item.isAvailable}
-            className="gap-1"
-          >
-            <Plus className="h-4 w-4" />
-            Add
-          </Button>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Button
+              size="sm"
+              onClick={handleAddToCart}
+              disabled={!item.isAvailable}
+              className="gap-1"
+            >
+              <Plus className="h-4 w-4" />
+              Add
+            </Button>
+          </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
