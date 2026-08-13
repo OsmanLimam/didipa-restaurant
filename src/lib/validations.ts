@@ -11,7 +11,15 @@ export const checkoutSchema = z.object({
   deliveryAddress: z.string().optional(),
   deliveryNotes: z.string().optional(),
   orderNotes: z.string().optional(),
-  paymentMethod: z.enum(['CASH_ON_DELIVERY', 'PAY_ON_PICKUP'], { required_error: 'Choose a payment method' }),
+  paymentMethod: z.enum([
+    'MTN_MOMO',
+    'VODAFONE_CASH',
+    'AIRTELTIGO_MONEY',
+    'PAYSTACK',
+    'CASH_ON_DELIVERY',
+    'PAY_ON_PICKUP',
+  ], { required_error: 'Choose a payment method' }),
+  momoPhone: z.string().optional(),
 }).refine(
   (data) => {
     if (data.orderType === 'DELIVERY') {
@@ -20,6 +28,26 @@ export const checkoutSchema = z.object({
     return true;
   },
   { message: 'Delivery address is required for delivery orders', path: ['deliveryAddress'] }
+).refine(
+  (data) => {
+    // MoMo payment methods require a phone number
+    const momoMethods = ['MTN_MOMO', 'VODAFONE_CASH', 'AIRTELTIGO_MONEY'];
+    if (momoMethods.includes(data.paymentMethod)) {
+      return !!data.momoPhone && data.momoPhone.length >= 10;
+    }
+    return true;
+  },
+  { message: 'Phone number is required for Mobile Money payments', path: ['momoPhone'] }
+).refine(
+  (data) => {
+    // Paystack and MoMo require an email
+    const onlineMethods = ['MTN_MOMO', 'VODAFONE_CASH', 'AIRTELTIGO_MONEY', 'PAYSTACK'];
+    if (onlineMethods.includes(data.paymentMethod)) {
+      return !!data.customerEmail && data.customerEmail.length > 0;
+    }
+    return true;
+  },
+  { message: 'Email is required for online payments', path: ['customerEmail'] }
 );
 
 export type CheckoutInput = z.infer<typeof checkoutSchema>;

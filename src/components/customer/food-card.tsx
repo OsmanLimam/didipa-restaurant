@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Plus, Flame, Clock } from "lucide-react";
@@ -10,6 +11,7 @@ import { useCartStore } from "@/stores/cart-store";
 import { formatPriceShort } from "@/lib/constants";
 import { toast } from "sonner";
 import { staggerItem } from "@/lib/animations";
+import { SuccessCheckmark } from "@/components/customer/success-checkmark";
 
 interface FoodCardProps {
   item: {
@@ -31,6 +33,7 @@ interface FoodCardProps {
 
 export function FoodCard({ item }: FoodCardProps) {
   const addItem = useCartStore((s) => s.addItem);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleAddToCart = () => {
     addItem({
@@ -43,6 +46,8 @@ export function FoodCard({ item }: FoodCardProps) {
       categoryName: item.category.name,
     });
     toast.success(`${item.name} added to cart`);
+    setShowSuccess(true);
+    setTimeout(() => setShowSuccess(false), 1500);
   };
 
   return (
@@ -105,17 +110,40 @@ export function FoodCard({ item }: FoodCardProps) {
               </span>
             )}
           </div>
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button
-              size="sm"
-              onClick={handleAddToCart}
-              disabled={!item.isAvailable}
-              className="gap-1"
-            >
-              <Plus className="h-4 w-4" />
-              Add
-            </Button>
-          </motion.div>
+          <AnimatePresence mode="wait">
+            {showSuccess ? (
+              <motion.div
+                key="success"
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                className="flex items-center gap-1.5"
+              >
+                <SuccessCheckmark show={true} size={18} />
+                <span className="text-sm font-semibold text-green-600">Added!</span>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="add"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button
+                  size="sm"
+                  onClick={handleAddToCart}
+                  disabled={!item.isAvailable}
+                  className="gap-1"
+                >
+                  <Plus className="h-4 w-4" />
+                  Add
+                </Button>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </motion.div>

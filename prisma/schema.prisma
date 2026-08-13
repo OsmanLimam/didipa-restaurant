@@ -107,8 +107,10 @@ model Order {
   deliveryAddress String?
   deliveryNotes   String?
   orderNotes      String?
-  paymentMethod   String              @default("CASH_ON_DELIVERY")
-  orderToken      String              @unique
+  paymentMethod     String              @default("CASH_ON_DELIVERY")
+  paymentStatus     String              @default("PENDING")
+  paymentReference  String?
+  orderToken        String              @unique
   items           OrderItem[]
   statusHistory   OrderStatusHistory[]
   createdAt       DateTime            @default(now())

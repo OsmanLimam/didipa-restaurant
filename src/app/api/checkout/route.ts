@@ -75,6 +75,11 @@ export async function POST(request: Request) {
     const orderNumber = await generateOrderNumber();
     const orderToken = generateOrderToken();
 
+    // Determine initial payment status
+    // Online payment methods start as PENDING, cash starts as UNPAID
+    const onlinePaymentMethods = ['MTN_MOMO', 'VODAFONE_CASH', 'AIRTELTIGO_MONEY', 'PAYSTACK'];
+    const initialPaymentStatus = onlinePaymentMethods.includes(validated.paymentMethod) ? 'PENDING' : 'UNPAID';
+
     // Create order with items in a transaction
     const order = await db.$transaction(async (tx) => {
       const newOrder = await tx.order.create({
@@ -91,6 +96,7 @@ export async function POST(request: Request) {
           deliveryNotes: validated.deliveryNotes || null,
           orderNotes: validated.orderNotes || null,
           paymentMethod: validated.paymentMethod,
+          paymentStatus: initialPaymentStatus,
           orderToken,
         },
       });

@@ -1,13 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { checkoutSchema, type CheckoutInput } from '@/lib/validations';
 import { useCartStore } from '@/stores/cart-store';
 import { formatPrice, PAYMENT_METHODS } from '@/lib/constants';
-import { Loader2, UtensilsCrossed, Minus, Plus, ArrowLeft } from 'lucide-react';
+import { initializePaystackPopup, generatePaymentReference, getPaystackChannelsForMethod, getMoMoNetwork, isOnlinePaymentMethod, isMoMoPaymentMethod } from '@/lib/paystack';
+import { Loader2, UtensilsCrossed, Minus, Plus, ArrowLeft, Phone, CreditCard, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -20,10 +21,12 @@ import Link from 'next/link';
 
 export default function CheckoutPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const items = useCartStore((s) => s.items);
   const getSubtotal = useCartStore((s) => s.getSubtotal);
   const clearCart = useCartStore((s) => s.clearCart);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isPaymentProcessing, setIsPaymentProcessing] = useState(false);
 
   const subtotal = getSubtotal();
   const deliveryFee = subtotal >= 100 ? 0 : 10;
@@ -40,11 +43,184 @@ export default function CheckoutPage() {
       deliveryNotes: '',
       orderNotes: '',
       paymentMethod: 'CASH_ON_DELIVERY',
+      momoPhone: '',
     },
   });
 
   const orderType = form.watch('orderType');
   const paymentMethod = form.watch('paymentMethod');
+
+  // Check for error params
+  const paymentError = searchParams.get('error');
+
+  // Show Paystack payment popup
+  const handlePaystackPayment = async (orderId: string, orderToken: string, email: string, orderTotal: number) => {
+    const reference = generatePaymentReference('DP');
+
+    try {
+      // Save payment reference to order
+      await fetch('/api/checkout', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ orderId, paymentReference: reference }),
+      });
+    } catch {
+      // Non-critical - continue with payment
+    }
+
+    setIsPaymentProcessing(true);
+    toast.info('Opening payment gateway...', { duration: 2000 });
+
+    try {
+      await initializePaystackPopup({
+        email,
+        amount: orderTotal,
+        reference,
+        channels: getPaystackChannelsForMethod(paymentMethod),
+        metadata: {
+          orderId,
+          custom_fields: [
+            { display_name: 'Order ID', variable_name: 'order_id', value: orderId },
+          ],
+        },
+        onSuccess: async (response) => {
+          toast.success('Payment successful! Verifying...', { duration: 2000 });
+
+          try {
+            // Verify payment on the server
+            const verifyRes = await fetch('/api/payment/verify', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ reference: response.reference, orderId }),
+            });
+
+            const verifyData = await verifyRes.json();
+
+            if (verifyData.verified) {
+              toast.success('Payment verified! Redirecting...', { duration: 2000 });
+              clearCart();
+              router.push(`/order/${orderToken}?payment=success`);
+            } else {
+              toast.error('Payment verification failed. Please contact support.');
+              setIsPaymentProcessing(false);
+              setIsSubmitting(false);
+            }
+          } catch {
+            toast.error('Could not verify payment. Your order has been placed.');
+            clearCart();
+            router.push(`/order/${orderToken}?payment=pending`);
+          }
+        },
+        onClose: () => {
+          setIsPaymentProcessing(false);
+          setIsSubmitting(false);
+          toast.info('Payment window closed. You can retry payment from your order page.', {
+            duration: 5000,
+          });
+        },
+      });
+    } catch (error) {
+      setIsPaymentProcessing(false);
+      setIsSubmitting(false);
+      toast.error(error instanceof Error ? error.message : 'Failed to open payment gateway');
+    }
+  };
+
+  // Handle Mobile Money charge (MTN, Vodafone, AirtelTigo)
+  const handleMoMoPayment = async (
+    orderId: string,
+    orderToken: string,
+    email: string,
+    orderTotal: number,
+    momoPhone: string
+  ) => {
+    const network = getMoMoNetwork(paymentMethod);
+    if (!network) {
+      toast.error('Invalid mobile money network');
+      setIsSubmitting(false);
+      return;
+    }
+
+    setIsPaymentProcessing(true);
+    toast.info('Sending payment request to your phone...', { duration: 3000 });
+
+    try {
+      const chargeRes = await fetch('/api/payment/charge', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          orderId,
+          phone: momoPhone,
+          network,
+          email,
+          amount: orderTotal,
+        }),
+      });
+
+      const chargeData = await chargeRes.json();
+
+      if (!chargeRes.ok) {
+        toast.error(chargeData.error || 'Mobile Money payment failed');
+        setIsPaymentProcessing(false);
+        setIsSubmitting(false);
+        return;
+      }
+
+      toast.success('Payment prompt sent! Please authorize on your phone.', {
+        duration: 10000,
+      });
+
+      // Poll for payment verification
+      const reference = chargeData.reference;
+      let attempts = 0;
+      const maxAttempts = 30; // 30 attempts x 2s = 60s timeout
+
+      const pollVerification = async () => {
+        try {
+          const verifyRes = await fetch('/api/payment/verify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ reference, orderId }),
+          });
+
+          const verifyData = await verifyRes.json();
+
+          if (verifyData.verified) {
+            toast.success('Payment confirmed!', { duration: 2000 });
+            clearCart();
+            router.push(`/order/${orderToken}?payment=success`);
+            return;
+          }
+
+          attempts++;
+          if (attempts < maxAttempts) {
+            setTimeout(pollVerification, 2000);
+          } else {
+            toast.info('Payment is still processing. Check your order status for updates.', {
+              duration: 5000,
+            });
+            clearCart();
+            router.push(`/order/${orderToken}?payment=pending`);
+          }
+        } catch {
+          attempts++;
+          if (attempts < maxAttempts) {
+            setTimeout(pollVerification, 2000);
+          } else {
+            clearCart();
+            router.push(`/order/${orderToken}?payment=pending`);
+          }
+        }
+      };
+
+      // Start polling after 5 second delay
+      setTimeout(pollVerification, 5000);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : 'Mobile Money payment failed');
+      setIsPaymentProcessing(false);
+      setIsSubmitting(false);
+    }
+  };
 
   const onSubmit = async (data: CheckoutInput) => {
     if (items.length === 0) {
@@ -61,6 +237,7 @@ export default function CheckoutPage() {
         specialInstructions: item.specialInstructions,
       }));
 
+      // Create the order first
       const res = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -75,13 +252,44 @@ export default function CheckoutPage() {
       }
 
       const result = await res.json();
-      clearCart();
-      router.push(`/order/${result.order?.orderToken || result.orderToken}`);
+      const orderId = result.order?.id;
+      const orderToken = result.order?.orderToken || result.orderToken;
+      const orderTotal = result.order?.total || total;
+
+      // Handle payment based on method
+      if (data.paymentMethod === 'PAYSTACK') {
+        // Paystack card/MoMo popup
+        if (!data.customerEmail) {
+          toast.error('Email is required for online payments');
+          setIsSubmitting(false);
+          return;
+        }
+        await handlePaystackPayment(orderId, orderToken, data.customerEmail, orderTotal);
+      } else if (isMoMoPaymentMethod(data.paymentMethod)) {
+        // Mobile Money charge
+        if (!data.customerEmail) {
+          toast.error('Email is required for Mobile Money payments');
+          setIsSubmitting(false);
+          return;
+        }
+        if (!data.momoPhone) {
+          toast.error('Phone number is required for Mobile Money');
+          setIsSubmitting(false);
+          return;
+        }
+        await handleMoMoPayment(orderId, orderToken, data.customerEmail, orderTotal, data.momoPhone);
+      } else {
+        // Cash on delivery or pay on pickup - no online payment needed
+        clearCart();
+        router.push(`/order/${orderToken}`);
+      }
     } catch (error) {
       toast.error('Something went wrong. Please try again.');
       setIsSubmitting(false);
     }
   };
+
+  const isProcessing = isSubmitting || isPaymentProcessing;
 
   if (items.length === 0) {
     return (
@@ -94,6 +302,11 @@ export default function CheckoutPage() {
     );
   }
 
+  // Check if current payment method requires email
+  const requiresEmail = isOnlinePaymentMethod(paymentMethod);
+  // Check if current payment method is MoMo (needs phone)
+  const isMoMo = isMoMoPaymentMethod(paymentMethod);
+
   return (
     <div className="container mx-auto px-4 py-6 max-w-4xl">
       <Link href="/cart" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors">
@@ -101,6 +314,13 @@ export default function CheckoutPage() {
       </Link>
 
       <h1 className="text-2xl font-bold mb-6">Checkout</h1>
+
+      {paymentError && (
+        <div className="mb-4 p-3 rounded-lg bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800 flex items-center gap-2 text-sm text-red-700 dark:text-red-400">
+          <AlertCircle className="h-4 w-4 shrink-0" />
+          <span>Payment error: {paymentError === 'no_reference' ? 'No payment reference received' : paymentError === 'verification_failed' ? 'Payment verification failed' : 'Payment failed'}</span>
+        </div>
+      )}
 
       <form onSubmit={form.handleSubmit(onSubmit)} className="grid lg:grid-cols-3 gap-8">
         {/* Form Fields */}
@@ -138,7 +358,9 @@ export default function CheckoutPage() {
                 </div>
               </div>
               <div>
-                <Label htmlFor="customerEmail">Email (optional)</Label>
+                <Label htmlFor="customerEmail">
+                  Email {requiresEmail ? '*' : '(optional)'}
+                </Label>
                 <Input
                   id="customerEmail"
                   type="email"
@@ -146,6 +368,9 @@ export default function CheckoutPage() {
                   className="mt-1"
                   placeholder="kwame@example.com"
                 />
+                {requiresEmail && !form.watch('customerEmail') && (
+                  <p className="text-xs text-muted-foreground mt-1">Required for online payment confirmation</p>
+                )}
                 {form.formState.errors.customerEmail && (
                   <p className="text-xs text-red-500 mt-1">{form.formState.errors.customerEmail.message}</p>
                 )}
@@ -250,7 +475,11 @@ export default function CheckoutPage() {
                           {opt.value === 'MTN_MOMO' && <p className="text-xs text-muted-foreground">Pay with MTN Mobile Money</p>}
                           {opt.value === 'VODAFONE_CASH' && <p className="text-xs text-muted-foreground">Pay with Vodafone Cash</p>}
                           {opt.value === 'AIRTELTIGO_MONEY' && <p className="text-xs text-muted-foreground">Pay with AirtelTigo Money</p>}
-                          {opt.value === 'PAYSTACK' && <p className="text-xs text-muted-foreground">Card or Mobile Money via Paystack</p>}
+                          {opt.value === 'PAYSTACK' && (
+                            <p className="text-xs text-muted-foreground flex items-center gap-1">
+                              <CreditCard className="h-3 w-3" /> Card or Mobile Money via Paystack
+                            </p>
+                          )}
                           {opt.value === 'CASH_ON_DELIVERY' && <p className="text-xs text-muted-foreground">Pay when your order arrives</p>}
                           {opt.value === 'PAY_ON_PICKUP' && <p className="text-xs text-muted-foreground">Pay when you pick up</p>}
                         </div>
@@ -259,6 +488,44 @@ export default function CheckoutPage() {
                   ))}
                 </RadioGroup>
               </div>
+
+              {/* MoMo Phone Number Field */}
+              {isMoMo && (
+                <div className="p-4 rounded-lg bg-muted/50 border space-y-3">
+                  <div className="flex items-center gap-2 text-sm font-medium">
+                    <Phone className="h-4 w-4 text-primary" />
+                    <span>Mobile Money Phone Number</span>
+                  </div>
+                  <Input
+                    {...form.register('momoPhone')}
+                    placeholder="e.g., 0241234567"
+                    type="tel"
+                  />
+                  {form.formState.errors.momoPhone && (
+                    <p className="text-xs text-red-500">{form.formState.errors.momoPhone.message}</p>
+                  )}
+                  <p className="text-xs text-muted-foreground">
+                    {paymentMethod === 'MTN_MOMO' && 'Enter your MTN Mobile Money number. You\'ll receive a payment prompt on this phone.'}
+                    {paymentMethod === 'VODAFONE_CASH' && 'Enter your Vodafone Cash number. You\'ll receive a payment prompt on this phone.'}
+                    {paymentMethod === 'AIRTELTIGO_MONEY' && 'Enter your AirtelTigo Money number. You\'ll receive a payment prompt on this phone.'}
+                  </p>
+                </div>
+              )}
+
+              {/* Paystack info */}
+              {paymentMethod === 'PAYSTACK' && (
+                <div className="p-4 rounded-lg bg-muted/50 border space-y-2">
+                  <div className="flex items-center gap-2 text-sm font-medium">
+                    <CreditCard className="h-4 w-4 text-primary" />
+                    <span>Secure Payment via Paystack</span>
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    You&apos;ll be redirected to a secure Paystack payment page where you can pay with your
+                    debit/credit card or Mobile Money. Your payment details are encrypted and secure.
+                  </p>
+                </div>
+              )}
+
               <div>
                 <Label htmlFor="orderNotes">Order Notes</Label>
                 <Textarea
@@ -314,16 +581,28 @@ export default function CheckoutPage() {
                 type="submit"
                 size="lg"
                 className="w-full gap-2"
-                disabled={isSubmitting}
+                disabled={isProcessing}
               >
-                {isSubmitting ? (
+                {isPaymentProcessing ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin" /> Processing Payment...
+                  </>
+                ) : isSubmitting ? (
                   <>
                     <Loader2 className="h-4 w-4 animate-spin" /> Placing Order...
                   </>
                 ) : (
-                  <>Place Order — {formatPrice(total)}</>
+                  <>
+                    {isOnlinePaymentMethod(paymentMethod) ? `Pay ${formatPrice(total)}` : `Place Order — ${formatPrice(total)}`}
+                  </>
                 )}
               </Button>
+
+              {isOnlinePaymentMethod(paymentMethod) && (
+                <p className="text-xs text-center text-muted-foreground">
+                  Secured by <span className="font-medium">Paystack</span>
+                </p>
+              )}
             </CardContent>
           </Card>
         </div>
