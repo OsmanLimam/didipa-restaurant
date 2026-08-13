@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import {
   LayoutDashboard,
@@ -65,7 +66,7 @@ function AdminLayoutInner({ children }: { children: React.ReactNode }) {
       <aside className="hidden lg:flex lg:flex-col lg:w-64 bg-card border-r">
         <div className="p-6 border-b">
           <div className="flex items-center gap-2">
-            <ChefHat className="h-7 w-7 text-primary" />
+            <Image src="/logo.png" alt="Mama's Kitchen" width={28} height={28} className="rounded-lg" />
             <div>
               <p className="font-bold">Mama&apos;s Kitchen</p>
               <p className="text-xs text-muted-foreground">Admin Panel</p>
@@ -121,7 +122,7 @@ function AdminLayoutInner({ children }: { children: React.ReactNode }) {
       >
         <div className="p-6 border-b flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <ChefHat className="h-7 w-7 text-primary" />
+            <Image src="/logo.png" alt="Mama's Kitchen" width={28} height={28} className="rounded-lg" />
             <p className="font-bold">Admin</p>
           </div>
           <Button

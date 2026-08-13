@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { UtensilsCrossed, ShoppingCart, Menu, X, Home } from 'lucide-react';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
@@ -24,9 +25,7 @@ export function CustomerHeader() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground transition-transform group-hover:scale-105">
-            <UtensilsCrossed className="h-5 w-5" />
-          </div>
+          <Image src="/logo.png" alt="Mama's Kitchen" width={36} height={36} className="rounded-lg transition-transform group-hover:scale-105" />
           <div className="hidden sm:block">
             <p className="text-lg font-bold leading-none">Mama&apos;s Kitchen</p>
             <p className="text-[10px] text-muted-foreground leading-none mt-0.5">Authentic Ghanaian Cuisine</p>
@@ -90,9 +89,7 @@ export function CustomerHeader() {
               <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
               <div className="flex flex-col gap-6 pt-6">
                 <div className="flex items-center gap-2 px-2">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                    <UtensilsCrossed className="h-4 w-4" />
-                  </div>
+                  <Image src="/logo.png" alt="Mama's Kitchen" width={32} height={32} className="rounded-lg" />
                   <p className="font-bold">Mama&apos;s Kitchen</p>
                 </div>
                 <nav className="flex flex-col gap-1">

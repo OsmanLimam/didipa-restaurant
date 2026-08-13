@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   description: "Order delicious Ghanaian food online. Jollof rice, banku, waakye, grilled tilapia and more. Delivery & pickup available in Accra.",
   keywords: ["Ghanaian food", "Accra restaurant", "Jollof rice", "Banku", "Waakye", "Food delivery Accra"],
   icons: {
-    icon: "/logo.svg",
+    icon: "/logo.png",
   },
   openGraph: {
     title: "Mama's Kitchen - Authentic Ghanaian Cuisine",

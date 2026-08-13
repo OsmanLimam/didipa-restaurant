@@ -4,6 +4,8 @@ import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { UtensilsCrossed, Search, Flame, Plus, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -158,13 +160,14 @@ export default function MenuPage() {
           <p className="text-sm text-muted-foreground mt-1">Try a different category or search</p>
         </div>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <motion.div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" initial="hidden" animate="visible" variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.06 } } }}>
           {filteredItems.map((item) => (
-            <Card key={item.id} className="group overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+            <motion.div key={item.id} variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.3 } } }}>
+            <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col">
               <Link href={`/menu/${item.slug}`} className="flex-1 flex flex-col">
                 <div className="aspect-[4/3] bg-muted relative overflow-hidden">
                   {item.image ? (
-                    <img src={item.image} alt={item.name} className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300" />
+                    <Image src={item.image} alt={item.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw" />
                   ) : (
                     <div className="flex items-center justify-center h-full">
                       <UtensilsCrossed className="h-10 w-10 text-muted-foreground/30" />
@@ -201,8 +204,9 @@ export default function MenuPage() {
                 </div>
               )}
             </Card>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       )}
     </div>
   );

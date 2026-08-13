@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { UtensilsCrossed, Clock, ChevronLeft, Minus, Plus, ShoppingCart, Check } from 'lucide-react';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -117,11 +119,11 @@ export default function FoodDetailPage() {
         <ChevronLeft className="h-4 w-4" /> Back to Menu
       </Link>
 
-      <div className="grid md:grid-cols-2 gap-8">
+      <motion.div className="grid md:grid-cols-2 gap-8" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
         {/* Image */}
-        <div className="aspect-square bg-muted rounded-xl overflow-hidden relative">
+        <motion.div className="aspect-square bg-muted rounded-xl overflow-hidden relative" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
           {item.image ? (
-            <img src={item.image} alt={item.name} className="object-cover w-full h-full" />
+            <Image src={item.image} alt={item.name} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" priority />
           ) : (
             <div className="flex items-center justify-center h-full">
               <UtensilsCrossed className="h-20 w-20 text-muted-foreground/20" />
@@ -132,10 +134,10 @@ export default function FoodDetailPage() {
               Popular
             </Badge>
           )}
-        </div>
+        </motion.div>
 
         {/* Details */}
-        <div className="space-y-6">
+        <motion.div className="space-y-6" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.2 }}>
           <div>
             <p className="text-sm text-muted-foreground">{item.category.name}</p>
             <h1 className="text-2xl md:text-3xl font-bold mt-1">{item.name}</h1>
@@ -250,8 +252,8 @@ export default function FoodDetailPage() {
               )}
             </Button>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }
