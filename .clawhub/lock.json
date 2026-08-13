@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "skills": {
+    "database-migration": {
+      "version": "1.0.0",
+      "installedAt": 1786648504698,
+      "ownerHandle": "emiltsoi"
+    },
+    "e2e-testing-patterns": {
+      "version": "1.0.0",
+      "installedAt": 1786648513686,
+      "ownerHandle": "wpank"
+    },
+    "prisma": {
+      "version": "1.0.2",
+      "installedAt": 1786648520335,
+      "ownerHandle": "ivangdavila"
+    },
+    "@ivangdavila/docker": {
+      "version": "1.0.10",
+      "installedAt": 1786648572305,
+      "ownerHandle": "ivangdavila"
+    },
+    "superpowers-systematic-debugging": {
+      "version": "1.0.0",
+      "installedAt": 1786648592359,
+      "ownerHandle": "axelhu"
+    },
+    "@jgarrison929/security-auditor": {
+      "version": "1.0.0",
+      "installedAt": 1786648600871,
+      "ownerHandle": "jgarrison929"
+    },
+    "@arnarsson/git-essentials": {
+      "version": "1.0.0",
+      "installedAt": 1786648606119,
+      "ownerHandle": "arnarsson"
+    },
+    "security-audit-toolkit": {
+      "version": "1.0.0",
+      "installedAt": 1786648632556,
+      "ownerHandle": "gitgoodordietrying"
+    },
+    "react-performance": {
+      "version": "1.0.0",
+      "installedAt": 1786648645888,
+      "ownerHandle": "wpank"
+    },
+    "performance-profiler": {
+      "version": "1.0.0",
+      "installedAt": 1786648660651,
+      "ownerHandle": "honestqiao"
+    },
+    "devops-automation-pack": {
+      "version": "1.0.0",
+      "installedAt": 1786648669943,
+      "ownerHandle": "sunshine-del-ux"
+    },
+    "backend-patterns": {
+      "version": "0.1.2",
+      "installedAt": 1786648675911,
+      "ownerHandle": "charmmm718"
+    },
+    "frontend-dev": {
+      "version": "0.1.1",
+      "installedAt": 1786648685670,
+      "ownerHandle": "wing8169"
+    },
+    "cicd-workflow": {
+      "version": "1.0.0",
+      "installedAt": 1786648698077,
+      "ownerHandle": "smallest-ming"
+    },
+    "sql-query-optimizer": {
+      "version": "1.0.0",
+      "installedAt": 1786648710723,
+      "ownerHandle": "honestqiao"
+    },
+    "@ivangdavila/k8s": {
+      "version": "1.0.5",
+      "installedAt": 1786648738146,
+      "ownerHandle": "ivangdavila"
+    }
+  }
+}
