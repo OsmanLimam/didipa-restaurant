@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { ChefHat, Loader2 } from "lucide-react";
+import Image from 'next/image';
 import { toast } from "sonner";
 import { signIn } from "next-auth/react";
 
@@ -47,7 +48,7 @@ export default function AdminLoginPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
-            <ChefHat className="h-12 w-12 text-primary" />
+            <Image src="/logo.png" alt="Mama's Kitchen" width={48} height={48} className="rounded-xl" />
           </div>
           <CardTitle className="text-2xl">Admin Login</CardTitle>
           <CardDescription>

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { UtensilsCrossed, Phone, MapPin, Clock } from 'lucide-react';
 import { DAYS_OF_WEEK } from '@/lib/constants';
 
@@ -25,9 +26,7 @@ export async function CustomerFooter() {
           {/* Brand */}
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <UtensilsCrossed className="h-4 w-4" />
-              </div>
+            <Image src="/logo.png" alt="Mama's Kitchen" width={32} height={32} className="rounded-lg" />
               <p className="text-lg font-bold">Mama&apos;s Kitchen</p>
             </div>
             <p className="text-sm text-muted-foreground">
