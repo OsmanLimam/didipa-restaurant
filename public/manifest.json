@@ -1,0 +1,28 @@
+{
+  "name": "DidiPa - Ghanaian Food Delivery",
+  "short_name": "DidiPa",
+  "description": "Order delicious Ghanaian food from DidiPa at KNUST Campus, Kumasi",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#d97706",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["food", "shopping"],
+  "lang": "en",
+  "dir": "ltr",
+  "scope": "/"
+}

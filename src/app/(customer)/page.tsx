@@ -7,6 +7,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { HomeAnimations, HeroAnimations, HeroItem, StaggerGrid, StaggerItem, FadeIn } from './home-animations';
+import { SocialShare } from '@/components/customer/social-share';
+import { getRestaurantStructuredData } from '@/lib/structured-data';
 
 export default async function HomePage() {
   const [popularItems, categories, testimonials, restaurant] = await Promise.all([
@@ -31,9 +33,15 @@ export default async function HomePage() {
   ]);
 
   const today = new Date().getDay();
+  const structuredData = getRestaurantStructuredData();
 
   return (
     <HomeAnimations>
+      {/* Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <div className="space-y-0">
         {/* Hero Section */}
         <section className="relative overflow-hidden bg-gradient-to-br from-primary via-primary/90 to-primary/70 min-h-[420px]">
@@ -175,6 +183,9 @@ export default async function HomePage() {
             <div className="text-center mb-8">
               <h2 className="text-2xl font-bold">What Our Customers Say</h2>
               <p className="text-muted-foreground text-sm mt-1">Real reviews from real food lovers</p>
+              <div className="mt-3 flex justify-center">
+                <SocialShare title="DidiPa - Taste the Difference" description="Order delicious Ghanaian food from DidiPa at KNUST Campus!" />
+              </div>
             </div>
             <StaggerGrid className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {testimonials.map((t) => (
@@ -258,8 +269,18 @@ export default async function HomePage() {
                         </a>
                       </Button>
                     )}
-                    <div className="bg-muted rounded-lg h-48 flex items-center justify-center">
-                      <MapPin className="h-10 w-10 text-muted-foreground/30" />
+                    <div className="bg-muted rounded-lg h-48 overflow-hidden relative">
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.5!2d-1.56!3d6.68!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNDAnNDguMCJOIDHCsDMzJzM2LjAiVw!5e0!3m2!1sen!2sgh!4v1"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        title="DidiPa at KNUST Campus"
+                        className="absolute inset-0"
+                      />
                     </div>
                   </div>
                 </CardContent>

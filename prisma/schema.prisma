@@ -19,7 +19,7 @@ model User {
 
 model Restaurant {
   id              String   @id @default(cuid())
-  name            String   @default("Mama's Kitchen")
+  name            String   @default("DidiPa")
   description     String?
   phone           String?
   whatsappNumber  String?

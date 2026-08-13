@@ -1,11 +1,11 @@
-# Task: Build Mama's Kitchen - Complete UI Pages and API Routes
+# Task: Build DidiPa - Complete UI Pages and API Routes
 
 ## Agent: Main Developer
 ## Task ID: main-build
 ## Status: COMPLETED
 
 ## Summary
-Built the complete Mama's Kitchen restaurant ordering web app with all customer-facing pages, admin pages, and API routes.
+Built the complete DidiPa restaurant ordering web app with all customer-facing pages, admin pages, and API routes.
 
 ## What Was Built
 

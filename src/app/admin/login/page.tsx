@@ -48,11 +48,11 @@ export default function AdminLoginPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
-            <Image src="/logo.png" alt="Mama's Kitchen" width={48} height={48} className="rounded-xl" />
+            <Image src="/logo.png" alt="DidiPa" width={48} height={48} className="rounded-xl" />
           </div>
           <CardTitle className="text-2xl">Admin Login</CardTitle>
           <CardDescription>
-            Sign in to manage Mama&apos;s Kitchen
+            Sign in to manage DidiPa
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -64,7 +64,7 @@ export default function AdminLoginPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@mamaskitchen.com"
+                placeholder="admin@didipa.com"
                 className="mt-1"
                 required
               />

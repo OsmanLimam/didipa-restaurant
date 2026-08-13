@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Fetch real food images for Mama's Kitchen
+# Fetch real food images for DidiPa
 set -e
 
 OUT="/home/z/my-project/scripts/image-urls.txt"

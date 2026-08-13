@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { checkoutSchema, type CheckoutInput } from '@/lib/validations';
 import { useCartStore } from '@/stores/cart-store';
-import { formatPrice } from '@/lib/constants';
+import { formatPrice, PAYMENT_METHODS } from '@/lib/constants';
 import { Loader2, UtensilsCrossed, Minus, Plus, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -230,13 +230,10 @@ export default function CheckoutPage() {
                 <Label>Payment Method</Label>
                 <RadioGroup
                   value={form.watch('paymentMethod')}
-                  onValueChange={(v) => form.setValue('paymentMethod', v as 'CASH_ON_DELIVERY' | 'PAY_ON_PICKUP')}
+                  onValueChange={(v) => form.setValue('paymentMethod', v as any)}
                   className="mt-2 space-y-2"
                 >
-                  {[
-                    { value: 'CASH_ON_DELIVERY', label: 'Cash on Delivery', desc: 'Pay when your order arrives' },
-                    { value: 'PAY_ON_PICKUP', label: 'Pay on Pickup', desc: 'Pay when you pick up your order' },
-                  ].map((opt) => (
+                  {PAYMENT_METHODS.map((opt) => (
                     <label
                       key={opt.value}
                       className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-all ${
@@ -246,9 +243,17 @@ export default function CheckoutPage() {
                       }`}
                     >
                       <RadioGroupItem value={opt.value} />
-                      <div>
-                        <p className="font-medium text-sm">{opt.label}</p>
-                        <p className="text-xs text-muted-foreground">{opt.desc}</p>
+                      <div className="flex items-center gap-2">
+                        <span className="text-lg">{opt.icon}</span>
+                        <div>
+                          <p className="font-medium text-sm">{opt.label}</p>
+                          {opt.value === 'MTN_MOMO' && <p className="text-xs text-muted-foreground">Pay with MTN Mobile Money</p>}
+                          {opt.value === 'VODAFONE_CASH' && <p className="text-xs text-muted-foreground">Pay with Vodafone Cash</p>}
+                          {opt.value === 'AIRTELTIGO_MONEY' && <p className="text-xs text-muted-foreground">Pay with AirtelTigo Money</p>}
+                          {opt.value === 'PAYSTACK' && <p className="text-xs text-muted-foreground">Card or Mobile Money via Paystack</p>}
+                          {opt.value === 'CASH_ON_DELIVERY' && <p className="text-xs text-muted-foreground">Pay when your order arrives</p>}
+                          {opt.value === 'PAY_ON_PICKUP' && <p className="text-xs text-muted-foreground">Pay when you pick up</p>}
+                        </div>
                       </div>
                     </label>
                   ))}

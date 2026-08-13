@@ -10,8 +10,12 @@ export const ORDER_STATUSES = [
 ] as const;
 
 export const PAYMENT_METHODS = [
-  { value: 'CASH_ON_DELIVERY', label: 'Cash on Delivery' },
-  { value: 'PAY_ON_PICKUP', label: 'Pay on Pickup' },
+  { value: 'MTN_MOMO', label: 'MTN Mobile Money', icon: '📱', color: '#FFC300' },
+  { value: 'VODAFONE_CASH', label: 'Vodafone Cash', icon: '📱', color: '#E60000' },
+  { value: 'AIRTELTIGO_MONEY', label: 'AirtelTigo Money', icon: '📱', color: '#ED1C24' },
+  { value: 'PAYSTACK', label: 'Pay with Card/MoMo', icon: '💳', color: '#0A2540' },
+  { value: 'CASH_ON_DELIVERY', label: 'Cash on Delivery', icon: '💵', color: '#22C55E' },
+  { value: 'PAY_ON_PICKUP', label: 'Pay on Pickup', icon: '🏪', color: '#3B82F6' },
 ] as const;
 
 export const ORDER_TYPES = [
@@ -56,10 +60,14 @@ export const ORDER_TYPE_LABELS: Record<string, string> = {
 };
 
 export const PAYMENT_METHOD_LABELS: Record<string, string> = {
+  MTN_MOMO: 'MTN Mobile Money',
+  VODAFONE_CASH: 'Vodafone Cash',
+  AIRTELTIGO_MONEY: 'AirtelTigo Money',
+  PAYSTACK: 'Pay with Card/MoMo',
   CASH_ON_DELIVERY: 'Cash on Delivery',
   PAY_ON_PICKUP: 'Pay on Pickup',
 };
 
 export function generateOrderNumber(existingCount: number): string {
-  return `MK-${1001 + existingCount}`;
+  return `DP-${1001 + existingCount}`;
 }

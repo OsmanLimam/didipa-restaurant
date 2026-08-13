@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch real food images for Mama's Kitchen using z-ai image-search CLI"""
+"""Fetch real food images for DidiPa using z-ai image-search CLI"""
 import subprocess
 import json
 import sys

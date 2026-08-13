@@ -23,7 +23,7 @@ async function main() {
   const hashedPassword = await hash('admin123', 12);
   const admin = await db.user.create({
     data: {
-      email: 'admin@mamaskitchen.com',
+      email: 'admin@didipa.com',
       name: 'Admin',
       password: hashedPassword,
       role: 'ADMIN',
@@ -34,8 +34,8 @@ async function main() {
   // Create restaurant
   const restaurant = await db.restaurant.create({
     data: {
-      name: "Mama's Kitchen",
-      description: 'A modern Ghanaian restaurant serving delicious local and contemporary meals with convenient ordering and delivery. From the rich flavors of Jollof Rice to the comforting warmth of Light Soup, every dish tells the story of home.',
+      name: "DidiPa",
+      description: 'A modern restaurant serving delicious local and contemporary meals with convenient ordering and delivery. From the rich flavors of Jollof Rice to the comforting warmth of Light Soup, every dish tells the story of home. Taste the Difference.',
       phone: '+233 53 682 8150',
       whatsappNumber: '233536828150',
       address: 'KNUST Campus, Kumasi, Ghana',
@@ -179,7 +179,7 @@ async function main() {
     const total = subtotal + deliveryFee;
     const daysAgo = Math.floor(i / 2);
     const orderDate = new Date(now.getTime() - daysAgo * 86400000);
-    const orderNumber = `MK-${1001 + i}`;
+    const orderNumber = `DP-${1001 + i}`;
     const orderToken = randomUUID();
 
     const order = await db.order.create({

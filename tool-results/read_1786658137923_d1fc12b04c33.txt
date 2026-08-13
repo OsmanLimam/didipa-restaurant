@@ -1,0 +1,1910 @@
+     1→# MASTER BUILD PROMPT
+     2→
+     3→## Premium Production-Quality Restaurant Ordering Platform
+     4→
+     5→You are an elite **staff-level full-stack engineer, product designer, UX/UI designer, database architect, QA engineer, security engineer, and DevOps engineer** working as one team.
+     6→
+     7→Your task is to **BUILD, RUN, TEST, DEBUG, POLISH, and PREPARE FOR DEPLOYMENT** a complete restaurant ordering web application.
+     8→
+     9→This is a real software project.
+    10→
+    11→It is NOT a design mockup.
+    12→It is NOT a static landing page.
+    13→It is NOT a collection of fake screens.
+    14→It is NOT a prototype where buttons merely look functional.
+    15→
+    16→I need a genuinely working full-stack application that can be:
+    17→
+    18→* run locally
+    19→* tested end-to-end
+    20→* pushed to GitHub
+    21→* deployed to production
+    22→* opened from a public URL
+    23→* demonstrated in a screen recording
+    24→* shown to potential clients/employers
+    25→* extended into a real restaurant product later
+    26→
+    27→The final product must look and feel like a professionally designed commercial application built by a highly experienced engineering and product team.
+    28→
+    29→Do not mention AI anywhere in the product UI.
+    30→
+    31→Do not use AI-generated filler copy.
+    32→
+    33→Do not create fake functionality.
+    34→
+    35→Do not claim something works unless it actually works.
+    36→
+    37→If you encounter an error, investigate and fix it rather than working around it with fake UI.
+    38→
+    39→---
+    40→
+    41→# 1. PRODUCT VISION
+    42→
+    43→Build a premium Ghana-focused restaurant ordering platform for a fictional restaurant called:
+    44→
+    45→# MAMA'S KITCHEN
+    46→
+    47→The platform has two primary experiences:
+    48→
+    49→### Customer
+    50→
+    51→A beautiful restaurant storefront where customers can:
+    52→
+    53→* discover meals
+    54→* browse categories
+    55→* search food
+    56→* view meal details
+    57→* customize orders
+    58→* add items to cart
+    59→* checkout
+    60→* choose delivery or pickup
+    61→* submit orders
+    62→* track orders
+    63→* contact the restaurant through WhatsApp
+    64→
+    65→### Restaurant Staff/Admin
+    66→
+    67→A secure dashboard where restaurant staff can:
+    68→
+    69→* view incoming orders
+    70→* process orders
+    71→* update order status
+    72→* manage menu items
+    73→* manage categories
+    74→* view customers
+    75→* view sales
+    76→* monitor restaurant performance
+    77→* configure restaurant settings
+    78→
+    79→The experience should feel like a real restaurant technology product.
+    80→
+    81→---
+    82→
+    83→# 2. DESIGN BENCHMARK
+    84→
+    85→The visual quality must be comparable to a professionally funded modern food-ordering product.
+    86→
+    87→Use the design quality of products such as:
+    88→
+    89→* Uber Eats
+    90→* DoorDash
+    91→* Toast
+    92→* Stripe
+    93→* Airbnb
+    94→* modern premium restaurant websites
+    95→
+    96→as inspiration for quality, NOT for copying their design.
+    97→
+    98→The product should have:
+    99→
+   100→* excellent typography
+   101→* strong hierarchy
+   102→* professional spacing
+   103→* high-quality imagery
+   104→* sophisticated cards
+   105→* restrained shadows
+   106→* subtle borders
+   107→* excellent buttons
+   108→* polished forms
+   109→* beautiful responsive navigation
+   110→* carefully designed empty states
+   111→* polished loading states
+   112→* thoughtful error states
+   113→* subtle micro-interactions
+   114→* smooth transitions
+   115→* excellent mobile UX
+   116→
+   117→Do NOT create:
+   118→
+   119→* excessive gradients
+   120→* excessive glassmorphism
+   121→* random neon colors
+   122→* excessive rounded cards
+   123→* giant unnecessary headings
+   124→* meaningless animations
+   125→* excessive shadows
+   126→* cluttered dashboards
+   127→* generic AI-template aesthetics
+   128→* visually inconsistent components
+   129→
+   130→Every design decision must have a reason.
+   131→
+   132→---
+   133→
+   134→# 3. BRAND
+   135→
+   136→Restaurant:
+   137→
+   138→MAMA'S KITCHEN
+   139→
+   140→Positioning:
+   141→
+   142→A modern Ghanaian restaurant serving delicious local and contemporary meals with convenient ordering and delivery.
+   143→
+   144→Brand personality:
+   145→
+   146→* warm
+   147→* premium
+   148→* trustworthy
+   149→* modern
+   150→* appetizing
+   151→* local
+   152→* professional
+   153→
+   154→Use Ghanaian food and cultural context naturally without turning the interface into a cliché.
+   155→
+   156→Use Ghanaian Cedi:
+   157→
+   158→GH₵
+   159→
+   160→Do not use USD in customer-facing content.
+   161→
+   162→---
+   163→
+   164→# 4. TECHNOLOGY
+   165→
+   166→Use a modern, stable, maintainable production stack.
+   167→
+   168→Preferred:
+   169→
+   170→* Next.js
+   171→* App Router
+   172→* TypeScript
+   173→* Tailwind CSS
+   174→* shadcn/ui
+   175→* Prisma
+   176→* PostgreSQL
+   177→* Zod
+   178→* React Hook Form where appropriate
+   179→* Lucide icons
+   180→* Motion / Framer Motion where appropriate
+   181→* Recharts for analytics
+   182→
+   183→Use stable compatible versions.
+   184→
+   185→Do not install libraries simply because they are popular.
+   186→
+   187→Every dependency must have a legitimate purpose.
+   188→
+   189→Avoid unnecessary dependency bloat.
+   190→
+   191→---
+   192→
+   193→# 5. ARCHITECTURE
+   194→
+   195→Use a clean, maintainable architecture.
+   196→
+   197→Separate:
+   198→
+   199→* UI components
+   200→* server logic
+   201→* database access
+   202→* validation
+   203→* authentication
+   204→* business logic
+   205→* utility functions
+   206→* types
+   207→* configuration
+   208→
+   209→Avoid giant components.
+   210→
+   211→Avoid duplicated logic.
+   212→
+   213→Avoid putting database logic directly into presentation components.
+   214→
+   215→Use reusable components.
+   216→
+   217→Create clear service boundaries where appropriate.
+   218→
+   219→Keep the architecture understandable to another developer joining the project.
+   220→
+   221→---
+   222→
+   223→# 6. ROUTING
+   224→
+   225→Create at minimum:
+   226→
+   227→CUSTOMER:
+   228→
+   229→/
+   230→/menu
+   231→/menu/[slug]
+   232→/cart
+   233→/checkout
+   234→/order/[id]
+   235→/order/[id]/confirmation
+   236→
+   237→ADMIN:
+   238→
+   239→/admin/login
+   240→/admin
+   241→/admin/orders
+   242→/admin/orders/[id]
+   243→/admin/menu
+   244→/admin/categories
+   245→/admin/customers
+   246→/admin/analytics
+   247→/admin/settings
+   248→
+   249→Create additional routes only when they provide real value.
+   250→
+   251→No dead routes.
+   252→
+   253→No dead navigation links.
+   254→
+   255→Every visible navigation element must lead somewhere meaningful.
+   256→
+   257→---
+   258→
+   259→# 7. CUSTOMER HOMEPAGE
+   260→
+   261→Build a high-end restaurant homepage.
+   262→
+   263→Include:
+   264→
+   265→## Header
+   266→
+   267→* restaurant logo
+   268→* menu navigation
+   269→* order/cart button
+   270→* responsive mobile navigation
+   271→
+   272→## Hero
+   273→
+   274→Strong restaurant photography.
+   275→
+   276→Clear headline.
+   277→
+   278→Supporting text.
+   279→
+   280→Primary CTA:
+   281→
+   282→"Order Now"
+   283→
+   284→Secondary CTA:
+   285→
+   286→"Explore Menu"
+   287→
+   288→Show useful restaurant information such as:
+   289→
+   290→* delivery
+   291→* pickup
+   292→* opening status
+   293→* estimated preparation time
+   294→
+   295→## Featured meals
+   296→
+   297→Show selected popular meals.
+   298→
+   299→## Categories
+   300→
+   301→Visually appealing category navigation.
+   302→
+   303→## Popular dishes
+   304→
+   305→Show high-performing dishes.
+   306→
+   307→## Promotional section
+   308→
+   309→Example:
+   310→
+   311→"Free delivery on orders over GH₵100"
+   312→
+   313→This should be configurable.
+   314→
+   315→## Restaurant story
+   316→
+   317→Short credible restaurant description.
+   318→
+   319→## Testimonials
+   320→
+   321→Use seeded demo testimonials.
+   322→
+   323→## Opening hours
+   324→
+   325→Clearly display operating hours.
+   326→
+   327→## Location
+   328→
+   329→Display restaurant location.
+   330→
+   331→## Footer
+   332→
+   333→Include:
+   334→
+   335→* restaurant information
+   336→* contact
+   337→* hours
+   338→* social links
+   339→* ordering links
+   340→* privacy
+   341→* terms
+   342→
+   343→Do not create fake external social links.
+   344→
+   345→If no real social accounts exist, do not fabricate them.
+   346→
+   347→---
+   348→
+   349→# 8. MENU
+   350→
+   351→Create a premium menu experience.
+   352→
+   353→Features:
+   354→
+   355→* category tabs
+   356→* search
+   357→* sorting
+   358→* popular filter
+   359→* availability filter
+   360→* responsive food grid
+   361→
+   362→Food card must show:
+   363→
+   364→* image
+   365→* name
+   366→* short description
+   367→* price
+   368→* category
+   369→* popular badge where applicable
+   370→* availability
+   371→* add button
+   372→
+   373→Add subtle hover interaction.
+   374→
+   375→On mobile, controls must remain easy to use.
+   376→
+   377→---
+   378→
+   379→# 9. FOOD DETAIL EXPERIENCE
+   380→
+   381→Clicking a food item opens a polished detail experience.
+   382→
+   383→Include:
+   384→
+   385→* large image
+   386→* meal name
+   387→* description
+   388→* price
+   389→* preparation estimate
+   390→* ingredients where appropriate
+   391→* optional extras
+   392→* quantity
+   393→* special instructions
+   394→* add-to-cart button
+   395→
+   396→Examples of extras:
+   397→
+   398→* extra chicken
+   399→* extra egg
+   400→* extra plantain
+   401→* extra sauce
+   402→* bottled water
+   403→
+   404→Extras must affect the actual order total.
+   405→
+   406→Do not merely display them visually.
+   407→
+   408→---
+   409→
+   410→# 10. CART
+   411→
+   412→Create a fully functional cart.
+   413→
+   414→Include:
+   415→
+   416→* item image
+   417→* item name
+   418→* selected options
+   419→* quantity
+   420→* unit price
+   421→* item total
+   422→* remove
+   423→* subtotal
+   424→* delivery fee
+   425→* discounts where applicable
+   426→* total
+   427→
+   428→Implement:
+   429→
+   430→* add
+   431→* remove
+   432→* increase
+   433→* decrease
+   434→* clear
+   435→* update
+   436→
+   437→Handle empty cart elegantly.
+   438→
+   439→Persist cart appropriately.
+   440→
+   441→Do not allow invalid quantities.
+   442→
+   443→---
+   444→
+   445→# 11. CHECKOUT
+   446→
+   447→Create a professional checkout flow.
+   448→
+   449→Fields:
+   450→
+   451→Customer name
+   452→Phone number
+   453→Email (optional)
+   454→Delivery or pickup
+   455→Delivery address
+   456→Delivery instructions
+   457→Special order notes
+   458→
+   459→For delivery:
+   460→
+   461→* address is required
+   462→* delivery fee applies
+   463→
+   464→For pickup:
+   465→
+   466→* unnecessary delivery fields disappear
+   467→
+   468→Use proper client-side and server-side validation.
+   469→
+   470→Use clear validation messages.
+   471→
+   472→Do not erase correctly entered information unnecessarily when validation fails.
+   473→
+   474→---
+   475→
+   476→# 12. ORDER CALCULATION
+   477→
+   478→IMPORTANT:
+   479→
+   480→Never trust totals submitted by the browser.
+   481→
+   482→The server must retrieve actual menu prices from the database and calculate:
+   483→
+   484→subtotal
+   485→extras
+   486→discounts
+   487→delivery fee
+   488→total
+   489→
+   490→on the server.
+   491→
+   492→The client must never be able to manipulate the final order price.
+   493→
+   494→---
+   495→
+   496→# 13. ORDER CREATION
+   497→
+   498→When a customer submits an order:
+   499→
+   500→1. Validate input.
+   501→2. Validate menu items.
+   502→3. Validate availability.
+   503→4. Retrieve current prices.
+   504→5. Calculate totals server-side.
+   505→6. Create customer if necessary.
+   506→7. Create order.
+   507→8. Create order items.
+   508→9. Store selected options.
+   509→10. Store delivery information.
+   510→11. Generate order number.
+   511→12. Return confirmation.
+   512→13. Display confirmation page.
+   513→
+   514→Use a database transaction where appropriate so an order cannot be partially created.
+   515→
+   516→---
+   517→
+   518→# 14. ORDER NUMBERS
+   519→
+   520→Create professional order numbers.
+   521→
+   522→Example:
+   523→
+   524→MK-1042
+   525→MK-1043
+   526→MK-1044
+   527→
+   528→They should be human-readable.
+   529→
+   530→Do not expose raw database IDs as the only customer-facing identifier.
+   531→
+   532→---
+   533→
+   534→# 15. ORDER STATUS
+   535→
+   536→Use actual database-backed statuses.
+   537→
+   538→Suggested:
+   539→
+   540→PENDING
+   541→CONFIRMED
+   542→PREPARING
+   543→READY
+   544→OUT_FOR_DELIVERY
+   545→DELIVERED
+   546→CANCELLED
+   547→
+   548→Create a sensible transition system.
+   549→
+   550→Do not allow nonsensical transitions.
+   551→
+   552→For example, a DELIVERED order should not casually move back to PENDING.
+   553→
+   554→---
+   555→
+   556→# 16. CUSTOMER ORDER TRACKING
+   557→
+   558→Create a polished tracking experience.
+   559→
+   560→Show:
+   561→
+   562→Order number
+   563→Restaurant
+   564→Items
+   565→Total
+   566→Delivery/pickup
+   567→Estimated time
+   568→
+   569→Visual timeline:
+   570→
+   571→Order received
+   572→↓
+   573→Confirmed
+   574→↓
+   575→Preparing
+   576→↓
+   577→Ready
+   578→↓
+   579→Out for delivery
+   580→↓
+   581→Delivered
+   582→
+   583→The current status must come from the database.
+   584→
+   585→If admin changes the order status, the customer tracking page must reflect the updated status when refreshed/reloaded.
+   586→
+   587→Do not fake real-time functionality unless actual real-time infrastructure is implemented.
+   588→
+   589→---
+   590→
+   591→# 17. WHATSAPP
+   592→
+   593→Implement WhatsApp ordering support.
+   594→
+   595→Store restaurant WhatsApp number in an environment variable.
+   596→
+   597→After checkout provide:
+   598→
+   599→"Continue on WhatsApp"
+   600→
+   601→Generate a properly encoded message containing:
+   602→
+   603→Restaurant
+   604→Order number
+   605→Customer
+   606→Items
+   607→Quantities
+   608→Options
+   609→Total
+   610→Delivery/pickup
+   611→Address
+   612→Notes
+   613→
+   614→The WhatsApp link must actually work.
+   615→
+   616→Do not hardcode the number inside components.
+   617→
+   618→---
+   619→
+   620→# 18. ADMIN AUTHENTICATION
+   621→
+   622→Create secure admin authentication.
+   623→
+   624→Admin routes must not be publicly accessible.
+   625→
+   626→Use proper authentication and authorization.
+   627→
+   628→Roles:
+   629→
+   630→ADMIN
+   631→STAFF
+   632→
+   633→If staff functionality is not fully implemented, keep the schema extensible without pretending it exists.
+   634→
+   635→Never expose passwords.
+   636→
+   637→Never store plaintext passwords.
+   638→
+   639→Never put secrets in client-side code.
+   640→
+   641→---
+   642→
+   643→# 19. ADMIN DASHBOARD
+   644→
+   645→Create a premium dashboard.
+   646→
+   647→Show:
+   648→
+   649→Today's revenue
+   650→Today's orders
+   651→Pending orders
+   652→Completed orders
+   653→Average order value
+   654→Popular item
+   655→
+   656→Include:
+   657→
+   658→* revenue chart
+   659→* order volume chart
+   660→* recent orders
+   661→* popular menu items
+   662→
+   663→The numbers must be derived from actual database data.
+   664→
+   665→Seed data should make the dashboard look realistic on first launch.
+   666→
+   667→---
+   668→
+   669→# 20. ADMIN ORDERS
+   670→
+   671→Create a professional order management interface.
+   672→
+   673→Table/list columns:
+   674→
+   675→Order
+   676→Customer
+   677→Items
+   678→Type
+   679→Total
+   680→Status
+   681→Time
+   682→
+   683→Filters:
+   684→
+   685→All
+   686→Pending
+   687→Confirmed
+   688→Preparing
+   689→Ready
+   690→Out for delivery
+   691→Delivered
+   692→Cancelled
+   693→
+   694→Include search.
+   695→
+   696→Include sorting where useful.
+   697→
+   698→Click an order to view complete details.
+   699→
+   700→---
+   701→
+   702→# 21. ADMIN ORDER DETAIL
+   703→
+   704→Show:
+   705→
+   706→Customer
+   707→Phone
+   708→Address
+   709→Items
+   710→Options
+   711→Subtotal
+   712→Delivery fee
+   713→Discount
+   714→Total
+   715→Order notes
+   716→Order time
+   717→Current status
+   718→Order history
+   719→
+   720→Provide clear status controls.
+   721→
+   722→When status changes:
+   723→
+   724→* validate transition
+   725→* update database
+   726→* show success feedback
+   727→* update UI
+   728→
+   729→---
+   730→
+   731→# 22. ORDER HISTORY
+   732→
+   733→Maintain order status history.
+   734→
+   735→Record:
+   736→
+   737→status
+   738→timestamp
+   739→changed by
+   740→
+   741→This allows the restaurant to see how the order progressed.
+   742→
+   743→Do not overwrite historical status information.
+   744→
+   745→---
+   746→
+   747→# 23. MENU MANAGEMENT
+   748→
+   749→Admin can:
+   750→
+   751→* create item
+   752→* edit item
+   753→* deactivate item
+   754→* activate item
+   755→* update price
+   756→* update image
+   757→* update description
+   758→* assign category
+   759→* mark popular
+   760→* configure extras
+   761→* set preparation time
+   762→
+   763→Destructive actions require confirmation.
+   764→
+   765→---
+   766→
+   767→# 24. CATEGORY MANAGEMENT
+   768→
+   769→Admin can:
+   770→
+   771→* create
+   772→* edit
+   773→* deactivate
+   774→* reorder
+   775→
+   776→Categories should have:
+   777→
+   778→name
+   779→slug
+   780→description
+   781→display order
+   782→active status
+   783→
+   784→---
+   785→
+   786→# 25. CUSTOMER MANAGEMENT
+   787→
+   788→Create a customer management view.
+   789→
+   790→Show:
+   791→
+   792→Customer name
+   793→Phone
+   794→Orders
+   795→Total spent
+   796→Last order
+   797→Customer since
+   798→
+   799→Allow admin to open customer order history.
+   800→
+   801→Do not expose unnecessary sensitive information.
+   802→
+   803→---
+   804→
+   805→# 26. ANALYTICS
+   806→
+   807→Create useful restaurant analytics.
+   808→
+   809→Metrics:
+   810→
+   811→* revenue
+   812→* orders
+   813→* average order value
+   814→* most popular meals
+   815→* category performance
+   816→* order status distribution
+   817→* delivery vs pickup
+   818→* daily/weekly/monthly trends
+   819→
+   820→Charts should be readable and useful.
+   821→
+   822→Avoid decorative charts with no business value.
+   823→
+   824→---
+   825→
+   826→# 27. RESTAURANT SETTINGS
+   827→
+   828→Admin settings should support:
+   829→
+   830→Restaurant name
+   831→Description
+   832→Phone
+   833→WhatsApp number
+   834→Address
+   835→Opening hours
+   836→Delivery fee
+   837→Minimum order
+   838→Preparation time
+   839→Restaurant status
+   840→
+   841→Potential status:
+   842→
+   843→OPEN
+   844→CLOSED
+   845→BUSY
+   846→
+   847→The customer storefront should respect restaurant availability.
+   848→
+   849→---
+   850→
+   851→# 28. OPENING HOURS
+   852→
+   853→Implement proper opening-hour data.
+   854→
+   855→Customer should see:
+   856→
+   857→OPEN NOW
+   858→or
+   859→CLOSED — OPENS AT 10:00 AM
+   860→
+   861→Do not hardcode this in the UI.
+   862→
+   863→Use configured restaurant hours.
+   864→
+   865→Handle timezone correctly.
+   866→
+   867→Use Africa/Accra where appropriate.
+   868→
+   869→---
+   870→
+   871→# 29. DEMO DATA
+   872→
+   873→Create a comprehensive seed system.
+   874→
+   875→Seed:
+   876→
+   877→* restaurant
+   878→* categories
+   879→* 20–30 menu items
+   880→* extras
+   881→* admin user
+   882→* sample customers
+   883→* 15–30 sample orders
+   884→* different order statuses
+   885→* realistic historical dates
+   886→* testimonials
+   887→
+   888→The application should look populated immediately after setup.
+   889→
+   890→---
+   891→
+   892→# 30. DEMO MODE
+   893→
+   894→Create a clearly separated development/demo environment.
+   895→
+   896→Demo data may be used for portfolio demonstration.
+   897→
+   898→Do NOT confuse demo data with production data.
+   899→
+   900→Production configuration must be able to start with a clean database.
+   901→
+   902→Do not create permanent backdoors.
+   903→
+   904→Do not create hidden admin access.
+   905→
+   906→---
+   907→
+   908→# 31. PAYMENTS
+   909→
+   910→Create a payment abstraction.
+   911→
+   912→Initial supported methods:
+   913→
+   914→* Cash on delivery
+   915→* Pay on pickup
+   916→* Payment pending
+   917→
+   918→Structure the code so a real Ghanaian payment provider can later be integrated without rewriting checkout.
+   919→
+   920→Potential future providers may include:
+   921→
+   922→* Paystack
+   923→* Flutterwave
+   924→* Hubtel
+   925→
+   926→Do not pretend payment occurred if no real payment provider is connected.
+   927→
+   928→If implementing a simulated payment for the demo, label it clearly as demo/test payment.
+   929→
+   930→---
+   931→
+   932→# 32. DATABASE
+   933→
+   934→Use PostgreSQL + Prisma.
+   935→
+   936→At minimum:
+   937→
+   938→User
+   939→Restaurant
+   940→RestaurantHours
+   941→Category
+   942→MenuItem
+   943→MenuItemExtra
+   944→Customer
+   945→Order
+   946→OrderItem
+   947→OrderItemExtra
+   948→OrderStatusHistory
+   949→Testimonial
+   950→
+   951→Use proper relationships.
+   952→
+   953→Use enums where appropriate.
+   954→
+   955→Add timestamps.
+   956→
+   957→Add indexes for frequently queried fields.
+   958→
+   959→Use cascading behavior carefully.
+   960→
+   961→Do not destroy historical order records when a menu item is deleted.
+   962→
+   963→Prefer deactivation/soft deletion where business history requires it.
+   964→
+   965→---
+   966→
+   967→# 33. DATA INTEGRITY
+   968→
+   969→Implement:
+   970→
+   971→* foreign keys
+   972→* unique constraints
+   973→* validation
+   974→* database transactions
+   975→* server-side calculations
+   976→* status validation
+   977→* availability checks
+   978→
+   979→Prevent:
+   980→
+   981→* negative quantities
+   982→* invalid prices
+   983→* invalid order totals
+   984→* invalid statuses
+   985→* ordering unavailable items
+   986→* unauthorized admin mutations
+   987→
+   988→---
+   989→
+   990→# 34. SECURITY
+   991→
+   992→Implement sensible production security.
+   993→
+   994→Protect:
+   995→
+   996→* admin routes
+   997→* API routes
+   998→* database credentials
+   999→* authentication secrets
+  1000→* environment variables
+  1001→
+  1002→Validate all externally supplied data.
+  1003→
+  1004→Do not trust:
+  1005→
+  1006→* client prices
+  1007→* client totals
+  1008→* client roles
+  1009→* client status transitions
+  1010→
+  1011→Avoid exposing internal database errors to users.
+  1012→
+  1013→Create user-friendly error messages.
+  1014→
+  1015→---
+  1016→
+  1017→# 35. ERROR HANDLING
+  1018→
+  1019→Every major flow needs:
+  1020→
+  1021→Loading state
+  1022→Success state
+  1023→Empty state
+  1024→Error state
+  1025→
+  1026→Examples:
+  1027→
+  1028→Menu loading
+  1029→Menu unavailable
+  1030→No search results
+  1031→Empty cart
+  1032→Checkout validation
+  1033→Order creation failure
+  1034→Order not found
+  1035→Admin authentication failure
+  1036→Database error
+  1037→
+  1038→Use useful recovery actions.
+  1039→
+  1040→Do not show raw technical errors.
+  1041→
+  1042→---
+  1043→
+  1044→# 36. LOADING UX
+  1045→
+  1046→Use skeleton loaders where useful.
+  1047→
+  1048→Avoid blank screens.
+  1049→
+  1050→Loading states should resemble the final layout.
+  1051→
+  1052→Do not use giant generic spinners everywhere.
+  1053→
+  1054→---
+  1055→
+  1056→# 37. TOASTS
+  1057→
+  1058→Use tasteful notifications for:
+  1059→
+  1060→Added to cart
+  1061→Removed from cart
+  1062→Order created
+  1063→Order status changed
+  1064→Menu item saved
+  1065→Menu item deleted
+  1066→Settings saved
+  1067→Copied order number
+  1068→
+  1069→Notifications should not become annoying.
+  1070→
+  1071→---
+  1072→
+  1073→# 38. ANIMATION SYSTEM
+  1074→
+  1075→Use Motion/Framer Motion only where appropriate.
+  1076→
+  1077→Implement subtle:
+  1078→
+  1079→* page transitions
+  1080→* modal transitions
+  1081→* drawer transitions
+  1082→* cart count animation
+  1083→* add-to-cart feedback
+  1084→* card hover
+  1085→* button feedback
+  1086→* order status transitions
+  1087→* skeleton transitions
+  1088→
+  1089→Respect:
+  1090→
+  1091→prefers-reduced-motion
+  1092→
+  1093→Do not animate every element.
+  1094→
+  1095→Animation should improve perceived quality, hierarchy, or feedback.
+  1096→
+  1097→---
+  1098→
+  1099→# 39. ICON SYSTEM
+  1100→
+  1101→Use one coherent icon library.
+  1102→
+  1103→Prefer Lucide icons.
+  1104→
+  1105→Do not mix random icon styles.
+  1106→
+  1107→Every icon button must have accessible labeling.
+  1108→
+  1109→Do not use emoji as the primary interface icon system.
+  1110→
+  1111→---
+  1112→
+  1113→# 40. TYPOGRAPHY
+  1114→
+  1115→Use a professional font pairing if justified.
+  1116→
+  1117→Typography should have:
+  1118→
+  1119→* clear heading hierarchy
+  1120→* readable body text
+  1121→* appropriate line height
+  1122→* good mobile sizing
+  1123→* consistent weights
+  1124→
+  1125→Do not use too many font families.
+  1126→
+  1127→---
+  1128→
+  1129→# 41. RESPONSIVE DESIGN
+  1130→
+  1131→Test at:
+  1132→
+  1133→360px
+  1134→375px
+  1135→390px
+  1136→414px
+  1137→768px
+  1138→1024px
+  1139→1280px
+  1140→1440px
+  1141→1920px
+  1142→
+  1143→Check:
+  1144→
+  1145→* navigation
+  1146→* menu
+  1147→* cart
+  1148→* checkout
+  1149→* admin dashboard
+  1150→* tables
+  1151→* charts
+  1152→* modals
+  1153→* forms
+  1154→
+  1155→There must be:
+  1156→
+  1157→NO horizontal overflow
+  1158→NO clipped content
+  1159→NO inaccessible buttons
+  1160→NO broken layouts
+  1161→
+  1162→---
+  1163→
+  1164→# 42. MOBILE UX
+  1165→
+  1166→Prioritize mobile.
+  1167→
+  1168→Important actions must be easy to reach.
+  1169→
+  1170→Consider:
+  1171→
+  1172→* sticky cart summary
+  1173→* mobile bottom navigation where appropriate
+  1174→* touch-friendly controls
+  1175→* large tap targets
+  1176→* simplified checkout
+  1177→* readable pricing
+  1178→
+  1179→Do not simply shrink desktop UI.
+  1180→
+  1181→Design mobile intentionally.
+  1182→
+  1183→---
+  1184→
+  1185→# 43. ACCESSIBILITY
+  1186→
+  1187→Implement:
+  1188→
+  1189→* semantic HTML
+  1190→* labels
+  1191→* keyboard navigation
+  1192→* focus states
+  1193→* accessible dialogs
+  1194→* accessible dropdowns
+  1195→* sufficient contrast
+  1196→* alt text
+  1197→* reduced motion
+  1198→* appropriate ARIA
+  1199→
+  1200→Do not sacrifice accessibility for visual design.
+  1201→
+  1202→---
+  1203→
+  1204→# 44. SEO
+  1205→
+  1206→Implement:
+  1207→
+  1208→* metadata
+  1209→* page titles
+  1210→* descriptions
+  1211→* Open Graph metadata
+  1212→* favicon
+  1213→* robots.txt
+  1214→* sitemap where appropriate
+  1215→* canonical URLs where appropriate
+  1216→
+  1217→Use meaningful metadata per page.
+  1218→
+  1219→---
+  1220→
+  1221→# 45. SOCIAL SHARING
+  1222→
+  1223→Create Open Graph metadata so when the restaurant URL is shared on WhatsApp or social media it produces a professional preview.
+  1224→
+  1225→Use:
+  1226→
+  1227→Restaurant name
+  1228→Description
+  1229→Professional image
+  1230→
+  1231→Do not leave generic Next.js metadata.
+  1232→
+  1233→---
+  1234→
+  1235→# 46. PERFORMANCE
+  1236→
+  1237→Optimize:
+  1238→
+  1239→* images
+  1240→* database queries
+  1241→* server/client boundaries
+  1242→* bundle size
+  1243→* rendering
+  1244→* loading
+  1245→* API calls
+  1246→
+  1247→Use Next.js image optimization.
+  1248→
+  1249→Avoid unnecessary client components.
+  1250→
+  1251→Avoid unnecessary JavaScript.
+  1252→
+  1253→---
+  1254→
+  1255→# 47. IMAGE STRATEGY
+  1256→
+  1257→Use high-quality, realistic food photography.
+  1258→
+  1259→Prefer properly licensed/usable image sources or bundled assets.
+  1260→
+  1261→Do not use broken URLs.
+  1262→
+  1263→Do not use random unrelated images.
+  1264→
+  1265→Every image must correspond to the meal.
+  1266→
+  1267→Use appropriate image aspect ratios.
+  1268→
+  1269→Use lazy loading where appropriate.
+  1270→
+  1271→Use meaningful alt text.
+  1272→
+  1273→---
+  1274→
+  1275→# 48. EMPTY STATES
+  1276→
+  1277→Create beautiful empty states for:
+  1278→
+  1279→Empty cart
+  1280→No menu results
+  1281→No orders
+  1282→No customers
+  1283→No analytics
+  1284→No search results
+  1285→
+  1286→Each should explain what happened and provide an appropriate action.
+  1287→
+  1288→---
+  1289→
+  1290→# 49. ERROR PAGES
+  1291→
+  1292→Create polished:
+  1293→
+  1294→404
+  1295→500/error
+  1296→unauthorized
+  1297→order-not-found
+  1298→
+  1299→experiences.
+  1300→
+  1301→Do not expose stack traces.
+  1302→
+  1303→---
+  1304→
+  1305→# 50. ADMIN TABLE UX
+  1306→
+  1307→Tables must support:
+  1308→
+  1309→* responsive behavior
+  1310→* useful columns
+  1311→* status badges
+  1312→* search
+  1313→* filtering
+  1314→* sorting where useful
+  1315→* pagination if required
+  1316→
+  1317→On mobile, transform complex tables into useful cards rather than creating impossible horizontal-scroll experiences.
+  1318→
+  1319→---
+  1320→
+  1321→# 51. FORM UX
+  1322→
+  1323→Forms must have:
+  1324→
+  1325→* labels
+  1326→* placeholders only where useful
+  1327→* validation
+  1328→* errors
+  1329→* loading state
+  1330→* success feedback
+  1331→* disabled state during submission
+  1332→
+  1333→Do not allow double submission.
+  1334→
+  1335→---
+  1336→
+  1337→# 52. SECURITY OF ORDER ACCESS
+  1338→
+  1339→Do not allow arbitrary users to view every order by simply changing an ID.
+  1340→
+  1341→Implement an appropriate order-access mechanism.
+  1342→
+  1343→For a demo/MVP, use a secure customer order token or authenticated customer session where appropriate.
+  1344→
+  1345→Admin can access all orders according to role.
+  1346→
+  1347→---
+  1348→
+  1349→# 53. CONFIGURATION
+  1350→
+  1351→Use environment variables for:
+  1352→
+  1353→DATABASE_URL
+  1354→AUTH_SECRET
+  1355→NEXT_PUBLIC_APP_URL
+  1356→WHATSAPP_NUMBER
+  1357→PAYMENT_PROVIDER_KEYS
+  1358→other secrets/configuration as necessary
+  1359→
+  1360→Create:
+  1361→
+  1362→.env.example
+  1363→
+  1364→Never commit:
+  1365→
+  1366→.env
+  1367→production secrets
+  1368→private keys
+  1369→
+  1370→---
+  1371→
+  1372→# 54. README
+  1373→
+  1374→Create a professional README containing:
+  1375→
+  1376→Project overview
+  1377→Features
+  1378→Screenshots section placeholder
+  1379→Technology
+  1380→Architecture overview
+  1381→Local setup
+  1382→Environment variables
+  1383→Database setup
+  1384→Migration commands
+  1385→Seed commands
+  1386→Admin credentials
+  1387→Development
+  1388→Testing
+  1389→Production build
+  1390→Deployment
+  1391→Troubleshooting
+  1392→Future integrations
+  1393→
+  1394→Make the README useful to another developer.
+  1395→
+  1396→---
+  1397→
+  1398→# 55. GIT
+  1399→
+  1400→Create a clean Git-ready repository.
+  1401→
+  1402→Include:
+  1403→
+  1404→.gitignore
+  1405→README
+  1406→.env.example
+  1407→
+  1408→Do not commit:
+  1409→
+  1410→node_modules
+  1411→.env
+  1412→build artifacts
+  1413→database secrets
+  1414→temporary files
+  1415→
+  1416→Use sensible commit structure if commits are being made.
+  1417→
+  1418→---
+  1419→
+  1420→# 56. DEPLOYMENT
+  1421→
+  1422→The application must be deployable.
+  1423→
+  1424→Primary target:
+  1425→
+  1426→Vercel
+  1427→
+  1428→Database:
+  1429→
+  1430→Production PostgreSQL compatible with Prisma.
+  1431→
+  1432→Ensure:
+  1433→
+  1434→* production build works
+  1435→* environment variables documented
+  1436→* Prisma deployment process documented
+  1437→* migrations handled correctly
+  1438→* seed process documented
+  1439→* image domains configured
+  1440→* production URL configurable
+  1441→* no localhost assumptions remain
+  1442→
+  1443→Do not hardcode localhost anywhere that affects production behavior.
+  1444→
+  1445→---
+  1446→
+  1447→# 57. DEPLOYMENT DOCUMENTATION
+  1448→
+  1449→README must explain:
+  1450→
+  1451→1. Create PostgreSQL database.
+  1452→2. Configure environment variables.
+  1453→3. Run Prisma migrations.
+  1454→4. Seed database if desired.
+  1455→5. Connect repository to Vercel.
+  1456→6. Configure environment variables.
+  1457→7. Deploy.
+  1458→8. Run production verification.
+  1459→
+  1460→---
+  1461→
+  1462→# 58. QUALITY ASSURANCE
+  1463→
+  1464→After implementation, perform a complete QA pass.
+  1465→
+  1466→Test:
+  1467→
+  1468→CUSTOMER
+  1469→
+  1470→Homepage
+  1471→Menu
+  1472→Search
+  1473→Categories
+  1474→Food details
+  1475→Extras
+  1476→Cart
+  1477→Checkout
+  1478→Order creation
+  1479→Confirmation
+  1480→Tracking
+  1481→WhatsApp
+  1482→
+  1483→ADMIN
+  1484→
+  1485→Login
+  1486→Dashboard
+  1487→Orders
+  1488→Order detail
+  1489→Status updates
+  1490→Menu management
+  1491→Categories
+  1492→Customers
+  1493→Analytics
+  1494→Settings
+  1495→
+  1496→---
+  1497→
+  1498→# 59. END-TO-END TEST
+  1499→
+  1500→Actually perform this scenario:
+  1501→
+  1502→1. Open homepage.
+  1503→2. Navigate to menu.
+  1504→3. Search for Jollof.
+  1505→4. Open Jollof.
+  1506→5. Add extra chicken.
+  1507→6. Set quantity to 2.
+  1508→7. Add to cart.
+  1509→8. Add a drink.
+  1510→9. Open cart.
+  1511→10. Verify subtotal.
+  1512→11. Select delivery.
+  1513→12. Enter delivery address.
+  1514→13. Submit order.
+  1515→14. Verify order is stored.
+  1516→15. Verify order number.
+  1517→16. Open confirmation.
+  1518→17. Open tracking.
+  1519→18. Log into admin.
+  1520→19. Verify order appears.
+  1521→20. Open order.
+  1522→21. Confirm order.
+  1523→22. Change to Preparing.
+  1524→23. Change to Ready.
+  1525→24. Return to tracking.
+  1526→25. Verify status.
+  1527→26. Test WhatsApp link.
+  1528→27. Test admin menu editing.
+  1529→28. Test responsive layouts.
+  1530→29. Run lint.
+  1531→30. Run type checking.
+  1532→31. Run production build.
+  1533→
+  1534→Fix every failure discovered.
+  1535→
+  1536→---
+  1537→
+  1538→# 60. AUTOMATED TESTING
+  1539→
+  1540→Where practical, implement automated tests for important business logic.
+  1541→
+  1542→Prioritize:
+  1543→
+  1544→* price calculation
+  1545→* cart calculations
+  1546→* delivery fee
+  1547→* order validation
+  1548→* status transitions
+  1549→* server-side order totals
+  1550→
+  1551→Do not spend excessive time creating meaningless tests.
+  1552→
+  1553→Test important logic.
+  1554→
+  1555→---
+  1556→
+  1557→# 61. BUILD VERIFICATION
+  1558→
+  1559→Before declaring the project complete, run the appropriate commands.
+  1560→
+  1561→At minimum:
+  1562→
+  1563→npm install
+  1564→
+  1565→npm run lint
+  1566→
+  1567→npm run build
+  1568→
+  1569→If configured:
+  1570→
+  1571→npm test
+  1572→
+  1573→Also run type checking.
+  1574→
+  1575→Fix all errors.
+  1576→
+  1577→Do not leave known build failures.
+  1578→
+  1579→---
+  1580→
+  1581→# 62. BROWSER QA
+  1582→
+  1583→Use the browser/runtime environment available to you to inspect the actual application.
+  1584→
+  1585→Do not rely only on source code inspection.
+  1586→
+  1587→Open the pages.
+  1588→
+  1589→Interact with them.
+  1590→
+  1591→Check:
+  1592→
+  1593→* visual alignment
+  1594→* console errors
+  1595→* broken images
+  1596→* navigation
+  1597→* forms
+  1598→* responsive behavior
+  1599→* loading states
+  1600→* database persistence
+  1601→
+  1602→---
+  1603→
+  1604→# 63. VISUAL QA
+  1605→
+  1606→Perform a dedicated final visual review.
+  1607→
+  1608→Pretend a client has paid a premium agency to build this product.
+  1609→
+  1610→Ask:
+  1611→
+  1612→Does it look expensive?
+  1613→
+  1614→Does it feel intentional?
+  1615→
+  1616→Does it look trustworthy?
+  1617→
+  1618→Does the restaurant feel real?
+  1619→
+  1620→Is the typography excellent?
+  1621→
+  1622→Are the images strong?
+  1623→
+  1624→Are the cards consistent?
+  1625→
+  1626→Are the buttons polished?
+  1627→
+  1628→Does the dashboard look credible?
+  1629→
+  1630→Does mobile feel designed rather than compressed?
+  1631→
+  1632→Are animations subtle?
+  1633→
+  1634→Are there awkward empty areas?
+  1635→
+  1636→Are there inconsistent margins?
+  1637→
+  1638→Are there unnecessary borders?
+  1639→
+  1640→Are there generic-looking components?
+  1641→
+  1642→Fix everything you find.
+  1643→
+  1644→---
+  1645→
+  1646→# 64. ANTI-AI-BLUFF RULE
+  1647→
+  1648→This rule is mandatory.
+  1649→
+  1650→NEVER claim:
+  1651→
+  1652→"Implemented"
+  1653→
+  1654→unless it actually exists.
+  1655→
+  1656→NEVER claim:
+  1657→
+  1658→"Working"
+  1659→
+  1660→unless it has been tested.
+  1661→
+  1662→NEVER claim:
+  1663→
+  1664→"Production ready"
+  1665→
+  1666→if the production build fails.
+  1667→
+  1668→NEVER hide errors.
+  1669→
+  1670→NEVER replace missing functionality with a fake animation.
+  1671→
+  1672→NEVER create fake statistics without labeling them as seed/demo data.
+  1673→
+  1674→NEVER fabricate payment success.
+  1675→
+  1676→NEVER fabricate database persistence.
+  1677→
+  1678→NEVER create buttons that do nothing.
+  1679→
+  1680→NEVER create links that lead nowhere.
+  1681→
+  1682→NEVER use placeholder text in the final customer-facing experience.
+  1683→
+  1684→NEVER leave:
+  1685→
+  1686→TODO
+  1687→FIXME
+  1688→Coming soon
+  1689→Lorem ipsum
+  1690→
+  1691→in important user-facing areas.
+  1692→
+  1693→If a feature cannot be completed because an external credential is unavailable:
+  1694→
+  1695→1. Build the correct integration architecture.
+  1696→2. Make the rest of the application functional.
+  1697→3. Clearly document the missing credential.
+  1698→4. Never pretend the integration is active.
+  1699→
+  1700→---
+  1701→
+  1702→# 65. NO OVERENGINEERING
+  1703→
+  1704→Do not turn a restaurant MVP into an unnecessarily complex enterprise system.
+  1705→
+  1706→Prefer:
+  1707→
+  1708→simple
+  1709→maintainable
+  1710→secure
+  1711→scalable enough
+  1712→easy to deploy
+  1713→
+  1714→over:
+  1715→
+  1716→massive architecture
+  1717→unnecessary microservices
+  1718→unnecessary abstractions
+  1719→dozens of dependencies
+  1720→
+  1721→The product should be sophisticated in EXPERIENCE and QUALITY, not unnecessarily complicated internally.
+  1722→
+  1723→---
+  1724→
+  1725→# 66. DEMO-FIRST QUALITY
+  1726→
+  1727→This application will be recorded as a product demonstration.
+  1728→
+  1729→Therefore the initial seeded environment must be visually impressive.
+  1730→
+  1731→When the application opens:
+  1732→
+  1733→* menu should be populated
+  1734→* restaurant should look alive
+  1735→* dashboard should contain meaningful data
+  1736→* sample orders should exist
+  1737→* charts should display useful information
+  1738→* status badges should look polished
+  1739→
+  1740→The demo should not require hours of setup.
+  1741→
+  1742→---
+  1743→
+  1744→# 67. RECORDING SCENARIO
+  1745→
+  1746→Make the product suitable for this demonstration:
+  1747→
+  1748→SCENE 1
+  1749→
+  1750→Open live restaurant website.
+  1751→
+  1752→Show homepage.
+  1753→
+  1754→SCENE 2
+  1755→
+  1756→Open menu.
+  1757→
+  1758→Search:
+  1759→
+  1760→Jollof
+  1761→
+  1762→SCENE 3
+  1763→
+  1764→Open:
+  1765→
+  1766→Jollof Rice & Chicken
+  1767→
+  1768→Add:
+  1769→
+  1770→Extra chicken
+  1771→
+  1772→Quantity:
+  1773→
+  1774→2
+  1775→
+  1776→SCENE 4
+  1777→
+  1778→Add:
+  1779→
+  1780→Sobolo
+  1781→
+  1782→Open cart.
+  1783→
+  1784→SCENE 5
+  1785→
+  1786→Checkout.
+  1787→
+  1788→Choose:
+  1789→
+  1790→Delivery
+  1791→
+  1792→Enter:
+  1793→
+  1794→Customer name
+  1795→Phone
+  1796→KNUST delivery address
+  1797→
+  1798→SCENE 6
+  1799→
+  1800→Place order.
+  1801→
+  1802→Show:
+  1803→
+  1804→ORDER #MK-XXXX
+  1805→
+  1806→SCENE 7
+  1807→
+  1808→Open admin dashboard.
+  1809→
+  1810→Show:
+  1811→
+  1812→New order
+  1813→
+  1814→SCENE 8
+  1815→
+  1816→Open order.
+  1817→
+  1818→Change:
+  1819→
+  1820→Pending
+  1821→→ Confirmed
+  1822→→ Preparing
+  1823→→ Ready
+  1824→
+  1825→SCENE 9
+  1826→
+  1827→Return to customer tracking.
+  1828→
+  1829→Show updated status.
+  1830→
+  1831→SCENE 10
+  1832→
+  1833→Click:
+  1834→
+  1835→Continue on WhatsApp
+  1836→
+  1837→Show generated order message.
+  1838→
+  1839→This should feel like a genuine software product demonstration.
+  1840→
+  1841→---
+  1842→
+  1843→# 68. POLISH PASS
+  1844→
+  1845→After all functionality is working, perform one additional pass ONLY for polish.
+  1846→
+  1847→Improve:
+  1848→
+  1849→* typography
+  1850→* spacing
+  1851→* visual hierarchy
+  1852→* image cropping
+  1853→* button states
+  1854→* hover states
+  1855→* transitions
+  1856→* loading states
+  1857→* empty states
+  1858→* mobile layout
+  1859→* dashboard readability
+  1860→* form UX
+  1861→* error messages
+  1862→* accessibility
+  1863→
+  1864→Do not add features during this pass unless they are necessary to fix a serious UX problem.
+  1865→
+  1866→---
+  1867→
+  1868→# 69. FINAL OUTPUT
+  1869→
+  1870→When the build is complete, provide:
+  1871→
+  1872→1. Final project structure.
+  1873→2. Technology stack.
+  1874→3. Implemented features.
+  1875→4. Database schema summary.
+  1876→5. Environment variables.
+  1877→6. Local setup commands.
+  1878→7. Database migration commands.
+  1879→8. Seed commands.
+  1880→9. Development admin credentials.
+  1881→10. Production build command.
+  1882→11. Deployment instructions.
+  1883→12. Known limitations.
+  1884→13. External credentials still required, if any.
+  1885→14. Exact commands to run the project.
+  1886→
+  1887→Most importantly:
+  1888→
+  1889→DO NOT STOP AT WRITING CODE.
+  1890→
+  1891→BUILD THE ACTUAL APPLICATION.
+  1892→
+  1893→RUN IT.
+  1894→
+  1895→TEST IT.
+  1896→
+  1897→FIX IT.
+  1898→
+  1899→POLISH IT.
+  1900→
+  1901→BUILD IT AGAIN.
+  1902→
+  1903→LEAVE IT IN A STATE WHERE I CAN OPEN THE WEBSITE AND USE IT.
+  1904→
+  1905→The final standard is:
+  1906→
+  1907→"Could this realistically be shown to a restaurant owner as a professional product?"
+  1908→
+  1909→If the answer is no, keep improving it.
+  1910→
