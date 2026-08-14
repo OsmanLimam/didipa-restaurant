@@ -12,6 +12,8 @@ import { HomeAnimations, HeroAnimations, HeroItem, StaggerGrid, StaggerItem, Fad
 import { SocialShare } from '@/components/customer/social-share';
 import { getRestaurantStructuredData } from '@/lib/structured-data';
 
+export const dynamic = 'force-dynamic';
+
 export default async function HomePage() {
   const [popularItems, categories, testimonials, restaurant] = await Promise.all([
     db.menuItem.findMany({
