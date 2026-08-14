@@ -1,5 +1,5 @@
 /**
- * Push Notification utilities for Mama's Kitchen
+ * Push Notification utilities for DidiPa
  * Handles subscription, unsubscription, and permission management
  */
 
@@ -127,12 +127,12 @@ export function notifyOrderStatus(status: string, orderNumber: string) {
     PREPARING: 'The kitchen is working on your order. Stay hungry!',
     READY: 'Your order is packed and ready. Come pick it up or wait for delivery.',
     OUT_FOR_DELIVERY: 'Your rider is on the way. Get ready!',
-    DELIVERED: 'Your order has been delivered. Thank you for choosing Mama\'s Kitchen!',
+    DELIVERED: 'Your order has been delivered. Thank you for choosing DidiPa!',
     CANCELLED: 'Your order has been cancelled. Please contact us if this was a mistake.',
   };
 
   return showLocalNotification({
-    title: `Mama's Kitchen - ${titles[status] || 'Order Update'}`,
+    title: `DidiPa - ${titles[status] || 'Order Update'}`,
     body: `${bodies[status] || 'Your order has been updated.'} (Order ${orderNumber})`,
     tag: `order-${orderNumber}`,
     url: `/order/${orderNumber}`,

@@ -74,7 +74,7 @@ export default async function HomePage() {
                 </HeroItem>
                 <HeroItem>
                   <p className="text-lg md:text-xl text-primary-foreground/70 max-w-lg">
-                    From jollof rice to banku & okro soup — order your favorite Ghanaian dishes for delivery or pickup.
+                    From jollof rice to banku & okro soup — order your favorite Ghanaian dishes from DidiPa for delivery or pickup.
                   </p>
                 </HeroItem>
                 <HeroItem>
@@ -198,7 +198,7 @@ export default async function HomePage() {
             <div className="space-y-4">
               <h2 className="text-2xl font-bold">Delivery & Pickup</h2>
               <p className="text-muted-foreground">
-                Enjoy Mama&apos;s Kitchen wherever you are on campus. We make it easy to get your favorite Ghanaian meals fresh and hot.
+                Enjoy DidiPa wherever you are on campus. We make it easy to get your favorite Ghanaian meals fresh and hot.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-start gap-2 text-sm">
@@ -229,7 +229,7 @@ export default async function HomePage() {
               <div className="aspect-[4/3] bg-muted relative">
                 <Image
                   src="/images/restaurant/food-delivery.png"
-                  alt="Mama's Kitchen food delivery"
+                  alt="DidiPa food delivery"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -275,7 +275,7 @@ export default async function HomePage() {
               <h2 className="text-2xl font-bold">What Our Customers Say</h2>
               <p className="text-muted-foreground text-sm mt-1">Real reviews from real food lovers</p>
               <div className="mt-3 flex justify-center">
-                <SocialShare title="Mama's Kitchen - Fresh Ghanaian Food" description="Order delicious Ghanaian food from Mama's Kitchen at KNUST Campus!" />
+                <SocialShare title="DidiPa - Authentic Ghanaian Food" description="Order delicious Ghanaian food from DidiPa at KNUST Campus, Kumasi!" />
               </div>
             </div>
             <StaggerGrid className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -369,7 +369,7 @@ export default async function HomePage() {
                         allowFullScreen
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
-                        title="Mama's Kitchen at KNUST Campus"
+                        title="DidiPa at KNUST Campus"
                         className="absolute inset-0"
                       />
                     </div>

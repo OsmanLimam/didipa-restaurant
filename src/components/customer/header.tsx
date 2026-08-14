@@ -27,11 +27,11 @@ export function CustomerHeader() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <motion.div whileHover={{ scale: 1.08, rotate: 3 }} whileTap={{ scale: 0.95 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
-            <Image src="/logo.png" alt="Mama's Kitchen" width={36} height={36} className="rounded-lg" />
+            <Image src="/logo.png" alt="DidiPa" width={36} height={36} className="rounded-lg" />
           </motion.div>
           <div className="hidden sm:block">
-            <p className="text-lg font-bold leading-none">Mama's Kitchen</p>
-            <p className="text-[10px] text-muted-foreground leading-none mt-0.5">Fresh Ghanaian Food, Made to Order</p>
+            <p className="text-lg font-bold leading-none">DidiPa</p>
+            <p className="text-[10px] text-muted-foreground leading-none mt-0.5">Authentic Ghanaian Cuisine</p>
           </div>
         </Link>
 
@@ -114,8 +114,8 @@ export function CustomerHeader() {
               <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
               <div className="flex flex-col gap-6 pt-6">
                 <div className="flex items-center gap-2 px-2">
-                  <Image src="/logo.png" alt="Mama's Kitchen" width={32} height={32} className="rounded-lg" />
-                  <p className="font-bold">Mama's Kitchen</p>
+                  <Image src="/logo.png" alt="DidiPa" width={32} height={32} className="rounded-lg" />
+                  <p className="font-bold">DidiPa</p>
                 </div>
                 <nav className="flex flex-col gap-1">
                   {navLinks.map((link) => {

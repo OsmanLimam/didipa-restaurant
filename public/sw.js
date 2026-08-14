@@ -1,6 +1,6 @@
 /// <reference lib="webworker" />
 
-// Mama's Kitchen Push Notification Service Worker
+// DidiPa Push Notification Service Worker
 // Handles push notifications for order status updates
 
 const NOTIFICATION_ICONS: Record<string, string> = {
@@ -25,7 +25,7 @@ self.addEventListener('push', (event: PushEvent) => {
   const orderNumber = data.orderNumber || '';
   const message = data.message || NOTIFICATION_TITLES[status] || 'Order update';
 
-  const title = `Mama's Kitchen - ${NOTIFICATION_TITLES[status] || 'Order Update'}`;
+  const title = `DidiPa - ${NOTIFICATION_TITLES[status] || 'Order Update'}`;
   const options: NotificationOptions = {
     body: message + (orderNumber ? ` (Order ${orderNumber})` : ''),
     icon: NOTIFICATION_ICONS[status] || '/logo.png',
@@ -41,8 +41,8 @@ self.addEventListener('push', (event: PushEvent) => {
       : status === 'delivered'
         ? [{ action: 'reorder', title: 'Order Again' }]
         : [],
-    tag: `order-${orderNumber}`, // Prevent duplicate notifications
-    requireInteraction: status === 'ready', // Keep visible until dismissed for "ready" status
+    tag: `order-${orderNumber}`,
+    requireInteraction: status === 'ready',
   };
 
   event.waitUntil(self.registration.showNotification(title, options));
@@ -62,25 +62,20 @@ self.addEventListener('notificationclick', (event: NotificationEvent) => {
 
   event.waitUntil(
     self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clients) => {
-      // Focus existing window if available
       for (const client of clients) {
         if (client.url.includes(url) && 'focus' in client) {
           return client.focus();
         }
       }
-      // Otherwise open new window
       return self.clients.openWindow(url);
     })
   );
 });
 
-// Handle push subscription changes
 self.addEventListener('pushsubscriptionchange', (event) => {
-  // Re-subscribe with the same options
   event.waitUntil(
     self.registration.pushManager.getSubscription().then((subscription) => {
       if (subscription) {
-        // Send new subscription to server
         return fetch('/api/push/subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

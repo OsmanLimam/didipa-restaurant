@@ -19,7 +19,7 @@ export function GoogleMapEmbed({ className = '' }: { className?: string }) {
         allowFullScreen
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
-        title="Mama's Kitchen location at KNUST Campus, Kumasi"
+        title="DidiPa location at KNUST Campus, Kumasi"
         className="absolute inset-0"
       />
       <div className="absolute bottom-2 right-2 z-10">

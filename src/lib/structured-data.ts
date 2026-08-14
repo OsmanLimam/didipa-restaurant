@@ -1,5 +1,5 @@
 /**
- * Structured Data (JSON-LD) for Mama's Kitchen Restaurant
+ * Structured Data (JSON-LD) for DidiPa Restaurant
  * Improves SEO and social media previews
  */
 
@@ -7,9 +7,9 @@ export function getRestaurantStructuredData() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Restaurant',
-    name: "Mama's Kitchen",
-    description: "Order delicious Ghanaian food from Mama's Kitchen at KNUST Campus, Kumasi. Jollof rice, banku & okro, waakye, grilled tilapia, kelewele and more.",
-    url: 'https://mamaskitchen.com',
+    name: 'DidiPa',
+    description: "Order delicious Ghanaian food from DidiPa at KNUST Campus, Kumasi. Jollof rice, banku & okro, waakye, grilled tilapia, kelewele and more.",
+    url: 'https://didipa.com',
     telephone: '+233536828150',
     address: {
       '@type': 'PostalAddress',
@@ -33,7 +33,7 @@ export function getRestaurantStructuredData() {
       {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        opens: '09:00',
+        opens: '07:00',
         closes: '21:00',
       },
     ],
@@ -41,8 +41,8 @@ export function getRestaurantStructuredData() {
     priceRange: 'GH₵',
     paymentAccepted: 'Cash, MTN Mobile Money, Vodafone Cash, AirtelTigo Money, Paystack',
     currenciesAccepted: 'GHS',
-    image: 'https://mamaskitchen.com/images/hero-food.png',
-    logo: 'https://mamaskitchen.com/logo.png',
+    image: 'https://didipa.com/images/hero-food.png',
+    logo: 'https://didipa.com/logo.png',
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.8',
@@ -50,8 +50,8 @@ export function getRestaurantStructuredData() {
     },
     hasMenu: {
       '@type': 'Menu',
-      name: "Mama's Kitchen Menu",
-      url: 'https://mamaskitchen.com/menu',
+      name: 'DidiPa Menu',
+      url: 'https://didipa.com/menu',
     },
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -76,7 +76,7 @@ export function getOrderStructuredData(orderNumber: string, status: string) {
     orderStatus: `https://schema.org/OrderStatus/${getSchemaOrderStatus(status)}`,
     seller: {
       '@type': 'Restaurant',
-      name: "Mama's Kitchen",
+      name: 'DidiPa',
     },
   };
 }
