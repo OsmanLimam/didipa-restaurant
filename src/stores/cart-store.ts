@@ -110,7 +110,7 @@ export const useCartStore = create<CartState>()(
       },
     }),
     {
-      name: 'didipa-cart',
+      name: 'mamaskitchen-cart',
     }
   )
 );

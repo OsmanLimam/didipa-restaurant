@@ -26,8 +26,8 @@ export async function CustomerFooter() {
           {/* Brand */}
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-            <Image src="/logo.png" alt="DidiPa" width={32} height={32} className="rounded-lg" />
-              <p className="text-lg font-bold">DidiPa</p>
+            <Image src="/logo.png" alt="Mama's Kitchen" width={32} height={32} className="rounded-lg" />
+              <p className="text-lg font-bold">Mama's Kitchen</p>
             </div>
             <p className="text-sm text-muted-foreground">
               Serving authentic Ghanaian dishes made with love and tradition. From our kitchen to your home.
@@ -88,7 +88,7 @@ export async function CustomerFooter() {
 
         <div className="border-t mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} DidiPa. All rights reserved.
+            &copy; {new Date().getFullYear()} Mama's Kitchen. All rights reserved.
           </p>
           <p className="text-xs text-muted-foreground">
             Made with ❤️ in Kumasi, Ghana

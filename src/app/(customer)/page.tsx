@@ -2,9 +2,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { db } from '@/lib/db';
 import { formatPrice, DAYS_OF_WEEK } from '@/lib/constants';
-import { UtensilsCrossed, Star, Clock, MapPin, Truck, ChevronRight, Flame } from 'lucide-react';
+import { UtensilsCrossed, Star, Clock, MapPin, Truck, ChevronRight, Flame, ClipboardList, MessageCircle } from 'lucide-react';
+import { ImageWithFallback } from '@/components/customer/image-fallback';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import { HomeAnimations, HeroAnimations, HeroItem, StaggerGrid, StaggerItem, FadeIn } from './home-animations';
 import { SocialShare } from '@/components/customer/social-share';
@@ -49,7 +51,7 @@ export default async function HomePage() {
           {/* Hero food image on right for desktop */}
           <div className="absolute right-0 top-0 bottom-0 w-1/2 hidden lg:block">
             <Image
-              src="/images/hero-food.png"
+              src="/images/hero/hero-food.png"
               alt="Ghanaian food spread"
               fill
               className="object-cover object-center opacity-40 mix-blend-overlay"
@@ -126,7 +128,7 @@ export default async function HomePage() {
                   <Card className="group overflow-hidden hover:shadow-lg transition-all duration-300 h-full">
                     <div className="aspect-[4/3] bg-muted relative overflow-hidden">
                       {item.image ? (
-                        <Image src={item.image} alt={item.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw" />
+                        <ImageWithFallback src={item.image} alt={item.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw" />
                       ) : (
                         <div className="flex items-center justify-center h-full">
                           <UtensilsCrossed className="h-10 w-10 text-muted-foreground/30" />
@@ -146,6 +148,95 @@ export default async function HomePage() {
               </StaggerItem>
             ))}
           </StaggerGrid>
+        </FadeIn>
+
+        {/* How Ordering Works */}
+        <FadeIn className="bg-muted/30">
+          <div className="container mx-auto px-4 py-12">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-bold">How Ordering Works</h2>
+              <p className="text-muted-foreground text-sm mt-1">Getting your favorite food is easy</p>
+            </div>
+            <StaggerGrid className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <StaggerItem>
+                <div className="text-center">
+                  <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center mx-auto mb-4 text-lg font-bold">
+                    1
+                  </div>
+                  <UtensilsCrossed className="h-8 w-8 text-primary mx-auto mb-3" />
+                  <h3 className="font-semibold text-lg mb-2">Choose Your Meal</h3>
+                  <p className="text-sm text-muted-foreground">Browse our menu and pick your favorite Ghanaian dishes</p>
+                </div>
+              </StaggerItem>
+              <StaggerItem>
+                <div className="text-center">
+                  <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center mx-auto mb-4 text-lg font-bold">
+                    2
+                  </div>
+                  <ClipboardList className="h-8 w-8 text-primary mx-auto mb-3" />
+                  <h3 className="font-semibold text-lg mb-2">Customize Your Order</h3>
+                  <p className="text-sm text-muted-foreground">Add extras, special instructions, and choose delivery or pickup</p>
+                </div>
+              </StaggerItem>
+              <StaggerItem>
+                <div className="text-center">
+                  <div className="w-12 h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center mx-auto mb-4 text-lg font-bold">
+                    3
+                  </div>
+                  <Truck className="h-8 w-8 text-primary mx-auto mb-3" />
+                  <h3 className="font-semibold text-lg mb-2">Get It Delivered</h3>
+                  <p className="text-sm text-muted-foreground">Sit back and enjoy fresh food delivered to your door, or pick it up hot</p>
+                </div>
+              </StaggerItem>
+            </StaggerGrid>
+          </div>
+        </FadeIn>
+
+        {/* Delivery & Pickup */}
+        <FadeIn className="container mx-auto px-4 py-12">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div className="space-y-4">
+              <h2 className="text-2xl font-bold">Delivery & Pickup</h2>
+              <p className="text-muted-foreground">
+                Enjoy Mama&apos;s Kitchen wherever you are on campus. We make it easy to get your favorite Ghanaian meals fresh and hot.
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-2 text-sm">
+                  <Truck className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+                  <span>Fast delivery across KNUST campus</span>
+                </li>
+                <li className="flex items-start gap-2 text-sm">
+                  <UtensilsCrossed className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+                  <span>Freshly prepared meals</span>
+                </li>
+                <li className="flex items-start gap-2 text-sm">
+                  <MessageCircle className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+                  <span>WhatsApp support for orders</span>
+                </li>
+                <li className="flex items-start gap-2 text-sm">
+                  <Star className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+                  <span>Free delivery on orders over GH₵100</span>
+                </li>
+              </ul>
+              <Button variant="outline" className="gap-2" asChild>
+                <a href="https://wa.me/233536828150" target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="h-4 w-4" />
+                  Order via WhatsApp
+                </a>
+              </Button>
+            </div>
+            <Card className="overflow-hidden">
+              <div className="aspect-[4/3] bg-muted relative">
+                <Image
+                  src="/images/restaurant/food-delivery.png"
+                  alt="Mama's Kitchen food delivery"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            </Card>
+          </div>
         </FadeIn>
 
         {/* Categories */}
@@ -184,7 +275,7 @@ export default async function HomePage() {
               <h2 className="text-2xl font-bold">What Our Customers Say</h2>
               <p className="text-muted-foreground text-sm mt-1">Real reviews from real food lovers</p>
               <div className="mt-3 flex justify-center">
-                <SocialShare title="DidiPa - Taste the Difference" description="Order delicious Ghanaian food from DidiPa at KNUST Campus!" />
+                <SocialShare title="Mama's Kitchen - Fresh Ghanaian Food" description="Order delicious Ghanaian food from Mama's Kitchen at KNUST Campus!" />
               </div>
             </div>
             <StaggerGrid className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -271,20 +362,91 @@ export default async function HomePage() {
                     )}
                     <div className="bg-muted rounded-lg h-48 overflow-hidden relative">
                       <iframe
-                        src="https://maps.google.com/maps?q=KNUST+Campus+Kumasi+Ghana&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                        src="https://maps.google.com/maps?q=KNUST+Campus,+Kumasi,+Ghana&t=&z=15&ie=UTF8&iwloc=&output=embed"
                         width="100%"
                         height="100%"
                         style={{ border: 0 }}
                         allowFullScreen
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
-                        title="DidiPa at KNUST Campus"
+                        title="Mama's Kitchen at KNUST Campus"
                         className="absolute inset-0"
                       />
                     </div>
                   </div>
                 </CardContent>
               </Card>
+            </div>
+          </div>
+        </FadeIn>
+
+        {/* FAQ Section */}
+        <FadeIn className="container mx-auto px-4 py-12">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-bold">Frequently Asked Questions</h2>
+              <p className="text-muted-foreground text-sm mt-1">Everything you need to know</p>
+            </div>
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="faq-1">
+                <AccordionTrigger>Do you deliver?</AccordionTrigger>
+                <AccordionContent>
+                  Yes! We deliver across KNUST campus and surrounding areas. Orders over GH₵100 qualify for free delivery.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="faq-2">
+                <AccordionTrigger>Can I order for pickup?</AccordionTrigger>
+                <AccordionContent>
+                  Absolutely! Select &quot;Pickup&quot; at checkout and we&apos;ll have your order ready for you at our KNUST Campus location.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="faq-3">
+                <AccordionTrigger>How long does delivery take?</AccordionTrigger>
+                <AccordionContent>
+                  Typical delivery time is 30-45 minutes depending on your location and order size.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="faq-4">
+                <AccordionTrigger>What payment methods do you accept?</AccordionTrigger>
+                <AccordionContent>
+                  We accept Cash on Delivery, MTN Mobile Money, Vodafone Cash, AirtelTigo Money, and card payments via Paystack.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="faq-5">
+                <AccordionTrigger>Can I order through WhatsApp?</AccordionTrigger>
+                <AccordionContent>
+                  Yes! Tap the WhatsApp button to place your order directly with us.
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="faq-6">
+                <AccordionTrigger>Can I customize my meal?</AccordionTrigger>
+                <AccordionContent>
+                  Of course! You can add extras and special instructions to any item in your cart.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
+        </FadeIn>
+        {/* Final CTA */}
+        <FadeIn className="bg-primary text-white">
+          <div className="container mx-auto px-4 py-16 text-center">
+            <h2 className="text-3xl font-bold mb-3">Ready to Order?</h2>
+            <p className="text-white/80 mb-6 max-w-lg mx-auto">
+              Explore our menu and get your favorite Ghanaian dishes delivered fresh.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3">
+              <Button size="lg" variant="secondary" className="text-base" asChild>
+                <Link href="/menu">
+                  <UtensilsCrossed className="mr-2 h-5 w-5" />
+                  View Menu
+                </Link>
+              </Button>
+              <Button size="lg" variant="outline" className="text-base border-white/30 text-white hover:bg-white/10" asChild>
+                <a href="https://wa.me/233536828150" target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="mr-2 h-5 w-5" />
+                  WhatsApp Us
+                </a>
+              </Button>
             </div>
           </div>
         </FadeIn>

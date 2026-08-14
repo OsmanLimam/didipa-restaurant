@@ -182,7 +182,7 @@ export default function OrderTrackingPage() {
           <div className="mt-4">
             <CheckCircle2 className="h-12 w-12 text-green-500 mx-auto mb-2" />
             <p className="text-lg font-medium text-green-600">Your order has been delivered!</p>
-            <p className="text-sm text-muted-foreground">Thank you for ordering from DidiPa</p>
+            <p className="text-sm text-muted-foreground">Thank you for ordering from Mama's Kitchen</p>
           </div>
         )}
 

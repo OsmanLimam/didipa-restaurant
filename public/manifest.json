@@ -1,7 +1,7 @@
 {
-  "name": "DidiPa - Ghanaian Food Delivery",
-  "short_name": "DidiPa",
-  "description": "Order delicious Ghanaian food from DidiPa at KNUST Campus, Kumasi",
+  "name": "Mama's Kitchen - Ghanaian Food Delivery",
+  "short_name": "Mama's Kitchen",
+  "description": "Order delicious Ghanaian food from Mama's Kitchen at KNUST Campus, Kumasi",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FFFFFF",

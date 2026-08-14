@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { UtensilsCrossed, Clock, ChevronLeft, Minus, Plus, ShoppingCart, Check } from 'lucide-react';
-import Image from 'next/image';
+import { ImageWithFallback } from '@/components/customer/image-fallback';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -123,7 +123,7 @@ export default function FoodDetailPage() {
         {/* Image */}
         <motion.div className="aspect-square bg-muted rounded-xl overflow-hidden relative" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
           {item.image ? (
-            <Image src={item.image} alt={item.name} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" priority />
+            <ImageWithFallback src={item.image} alt={item.name} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" priority />
           ) : (
             <div className="flex items-center justify-center h-full">
               <UtensilsCrossed className="h-20 w-20 text-muted-foreground/20" />

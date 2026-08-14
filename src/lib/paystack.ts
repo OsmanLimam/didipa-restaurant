@@ -1,5 +1,5 @@
 /**
- * Payment Gateway Integration for DidiPa
+ * Payment Gateway Integration for Mama's Kitchen
  * Supports: Paystack (Ghana), MTN MoMo, Vodafone Cash, AirtelTigo Money
  *
  * Paystack is the primary gateway - it handles Mobile Money (MoMo)

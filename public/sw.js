@@ -1,6 +1,6 @@
 /// <reference lib="webworker" />
 
-// DidiPa Push Notification Service Worker
+// Mama's Kitchen Push Notification Service Worker
 // Handles push notifications for order status updates
 
 const NOTIFICATION_ICONS: Record<string, string> = {
@@ -25,7 +25,7 @@ self.addEventListener('push', (event: PushEvent) => {
   const orderNumber = data.orderNumber || '';
   const message = data.message || NOTIFICATION_TITLES[status] || 'Order update';
 
-  const title = `DidiPa - ${NOTIFICATION_TITLES[status] || 'Order Update'}`;
+  const title = `Mama's Kitchen - ${NOTIFICATION_TITLES[status] || 'Order Update'}`;
   const options: NotificationOptions = {
     body: message + (orderNumber ? ` (Order ${orderNumber})` : ''),
     icon: NOTIFICATION_ICONS[status] || '/logo.png',

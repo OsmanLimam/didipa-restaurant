@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import { ImageWithFallback } from "@/components/customer/image-fallback";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -61,7 +61,7 @@ export function FoodCard({ item }: FoodCardProps) {
       <Link href={`/menu/${item.slug}`} className="block">
         <div className="relative aspect-[4/3] overflow-hidden bg-muted">
           {item.image ? (
-            <Image
+            <ImageWithFallback
               src={item.image}
               alt={item.name}
               fill

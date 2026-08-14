@@ -1,5 +1,5 @@
 /**
- * WhatsApp integration for DidiPa
+ * WhatsApp integration for Mama's Kitchen
  */
 
 const WHATSAPP_NUMBER = process.env.WHATSAPP_NUMBER || '233241234567';

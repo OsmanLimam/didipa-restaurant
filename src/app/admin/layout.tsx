@@ -66,9 +66,9 @@ function AdminLayoutInner({ children }: { children: React.ReactNode }) {
       <aside className="hidden lg:flex lg:flex-col lg:w-64 bg-card border-r">
         <div className="p-6 border-b">
           <div className="flex items-center gap-2">
-            <Image src="/logo.png" alt="DidiPa" width={28} height={28} className="rounded-lg" />
+            <Image src="/logo.png" alt="Mama's Kitchen" width={28} height={28} className="rounded-lg" />
             <div>
-              <p className="font-bold">DidiPa</p>
+              <p className="font-bold">Mama's Kitchen</p>
               <p className="text-xs text-muted-foreground">Admin Panel</p>
             </div>
           </div>
@@ -122,7 +122,7 @@ function AdminLayoutInner({ children }: { children: React.ReactNode }) {
       >
         <div className="p-6 border-b flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Image src="/logo.png" alt="DidiPa" width={28} height={28} className="rounded-lg" />
+            <Image src="/logo.png" alt="Mama's Kitchen" width={28} height={28} className="rounded-lg" />
             <p className="font-bold">Admin</p>
           </div>
           <Button

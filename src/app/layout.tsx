@@ -22,11 +22,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "DidiPa - Taste the Difference | Ghanaian Food Delivery",
-    template: "%s | DidiPa",
+    default: "Mama's Kitchen - Fresh Ghanaian Food, Made to Order | Food Delivery",
+    template: "%s | Mama's Kitchen",
   },
   description:
-    "Order delicious Ghanaian food online from DidiPa at KNUST Campus, Kumasi. Jollof rice, banku & okro, waakye, grilled tilapia, kelewele and more. Fast delivery & pickup available. Pay with MTN MoMo, Vodafone Cash, or cash.",
+    "Order delicious Ghanaian food online from Mama's Kitchen at KNUST Campus, Kumasi. Jollof rice, banku & okro, waakye, grilled tilapia, kelewele and more. Fast delivery & pickup available. Pay with MTN MoMo, Vodafone Cash, or cash.",
   keywords: [
     "Ghanaian food",
     "Kumasi restaurant",
@@ -38,15 +38,15 @@ export const metadata: Metadata = {
     "Kelewele",
     "Food delivery Kumasi",
     "Food delivery KNUST",
-    "DidiPa",
+    "Mama's Kitchen",
     "Ghana food delivery",
     "MTN MoMo food",
     "Ghanaian restaurant",
     "Local Ghanaian dishes",
   ],
-  authors: [{ name: "DidiPa" }],
-  creator: "DidiPa",
-  publisher: "DidiPa",
+  authors: [{ name: "Mama's Kitchen" }],
+  creator: "Mama's Kitchen",
+  publisher: "Mama's Kitchen",
   robots: {
     index: true,
     follow: true,
@@ -66,28 +66,28 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_GH",
-    url: "https://didipa.com",
-    siteName: "DidiPa",
-    title: "DidiPa - Taste the Difference | Ghanaian Food Delivery",
+    url: "https://mamaskitchen.com",
+    siteName: "Mama's Kitchen",
+    title: "Mama's Kitchen - Fresh Ghanaian Food, Made to Order | Food Delivery",
     description:
-      "Order delicious Ghanaian food from DidiPa at KNUST Campus. Jollof rice, banku, waakye & more. Fast delivery, MTN MoMo accepted.",
+      "Order delicious Ghanaian food from Mama's Kitchen at KNUST Campus. Jollof rice, banku, waakye & more. Fast delivery, MTN MoMo accepted.",
     images: [
       {
         url: "/images/hero-food.png",
         width: 1344,
         height: 768,
-        alt: "DidiPa - Authentic Ghanaian Cuisine",
+        alt: "Mama's Kitchen - Authentic Ghanaian Cuisine",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DidiPa - Taste the Difference",
-    description: "Order delicious Ghanaian food from DidiPa at KNUST Campus, Kumasi.",
+    title: "Mama's Kitchen - Fresh Ghanaian Food, Made to Order",
+    description: "Order delicious Ghanaian food from Mama's Kitchen at KNUST Campus, Kumasi.",
     images: ["/images/hero-food.png"],
   },
   alternates: {
-    canonical: "https://didipa.com",
+    canonical: "https://mamaskitchen.com",
   },
 };
 

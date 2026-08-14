@@ -21,7 +21,7 @@ export function AntiFraudBanner() {
           <div className="flex items-center gap-2 min-w-0">
             <ShieldAlert className="h-4 w-4 shrink-0" />
             <p className="truncate">
-              <strong>Stay Safe!</strong> Only order through this official DidiPa app. Call{' '}
+              <strong>Stay Safe!</strong> Only order through this official Mama's Kitchen app. Call{' '}
               <a href="tel:+233536828150" className="underline font-semibold">053 682 8150</a>{' '}
               to verify. Do NOT trust other numbers.
             </p>
